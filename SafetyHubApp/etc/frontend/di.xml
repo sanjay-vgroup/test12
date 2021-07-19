@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\Framework\App\Action\AbstractAction">
+        <plugin name="safetyhubapp_app_action_dispatchController_context_plugin" type="Vgroup\SafetyHubApp\Plugin\App\Action\Context" sortOrder="15"/>
+    </type>
+    <type name="\Magento\Customer\Controller\Account\LoginPost">
+        <plugin name="vgroup_safetyhubapp_loginpostplugin" type="Vgroup\SafetyHubApp\Plugin\LoginPostPlugin" sortOrder="1" />
+    </type>
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="safetyhubapp_users_items_listing_data_source" xsi:type="string">Vgroup\SafetyHubApp\Model\ResourceModel\SafetyUsersItems\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+    
+    <type name="Vgroup\SafetyHubApp\Model\ResourceModel\SafetyUsersItems\Grid\Collection">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">safetyhubapp_users_items</argument>
+            <argument name="eventPrefix" xsi:type="string">safetyhubapp_users_items_grid_collection</argument>
+            <argument name="eventObject" xsi:type="string">safetyhubapp_users_items_grid_collection</argument>
+            <argument name="resourceModel" xsi:type="string">Vgroup\SafetyHubApp\Model\ResourceModel\SafetyUsersItems</argument>
+        </arguments>	
+    </type>
+    
+    <virtualType name="SafetyUsersItemsGridDataProvider" type="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider">
+        <arguments>
+            <argument name="collection" xsi:type="object" shared="false">Vgroup\SafetyHubApp\Model\ResourceModel\SafetyUsersItems\Collection</argument>
+            <argument name="filterPool" xsi:type="object" shared="false">SafetyUsersItemsGridFilterPool</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="SafetyUsersItemsGridFilterPool" type="Magento\Framework\View\Element\UiComponent\DataProvider\FilterPool">
+        <arguments>
+            <argument name="appliers" xsi:type="array">
+                <item name="regular" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\RegularFilter</item>
+                <item name="fulltext" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\FulltextFilter</item>
+            </argument>
+        </arguments>
+    </virtualType> 
+</config>

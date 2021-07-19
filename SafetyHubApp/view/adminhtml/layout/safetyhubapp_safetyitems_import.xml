@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+<head>
+        <css src="Vgroup_SafetyHubApp::css/c-style.css"/>
+    </head>
+
+    <body>
+        <referenceContainer name="content">
+          <block class="Vgroup\SafetyHubApp\Block\Adminhtml\SafetyItems\Import\ImportSafetyItems" name="safetyhubapp_safetyitems_import" template="Vgroup_SafetyHubApp::safetyItems/import/safetyItems.phtml"/>
+        </referenceContainer>
+    </body>
+</page>

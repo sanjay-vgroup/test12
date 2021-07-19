@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="admin-2columns-left" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <update handle="editor"/>
+    <body>
+        <referenceContainer name="content">
+            <block class="Vgroup\SafetyHubApp\Block\Adminhtml\Companies\Edit" name="safetyhubapp_company_edit"/>
+        </referenceContainer>
+        <referenceContainer name="left">
+            <block class="Vgroup\SafetyHubApp\Block\Adminhtml\Companies\Edit\Tabs" name="safetyhubapp_company_edit_tabs">
+                <block class="Vgroup\SafetyHubApp\Block\Adminhtml\Companies\Edit\Tab\Main" name="safetyhubapp_company_edit_tab_main"/>
+                <block class="Vgroup\SafetyHubApp\Block\Adminhtml\Companies\Edit\Tab\UserRole" name="safetyhubapp_company_user_role" template="Vgroup_SafetyHubApp::company/userrole.phtml"/>
+                <action method="addTab">
+                    <argument name="name" xsi:type="string">main_section</argument>
+                    <argument name="block" xsi:type="string">safetyhubapp_company_edit_tab_main</argument>
+                </action>
+                <action method="addTab">
+                    <argument name="name" xsi:type="string">user_role</argument>
+                    <argument name="block" xsi:type="string">safetyhubapp_company_user_role</argument>
+                </action>
+                <action method="addTab">
+                    <argument name="name" xsi:type="string">comapnies_partnumbers</argument>
+                    <argument name="block" xsi:type="array">
+                        <item name="label" xsi:type="string">Company Items</item>
+                        <item name="title" xsi:type="string">Company Items</item>
+                        <item name="url" xsi:type="helper" helper="Vgroup\SafetyHubApp\Helper\Data::getPartNumbersGridUrl"></item>
+                        <item name="class" xsi:type="string">ajax</item>
+                    </argument>
+                </action>
+            </block>
+        </referenceContainer>
+    </body>
+</page>

@@ -1,0 +1,493 @@
+<?php
+    $company = $block->getCompany()->getData();
+ 
+ //  echo '<pre>';
+//print_r($company);
+//exit();
+?>
+<div class="form-outer">
+
+<div class="hb-outbx">
+
+<div class="half-inbx">
+<form id="person-form-validate" class="form preview-form" action="<?= $block->getUrl('safetyhubapp/company/save'); ?>"
+      method="post"
+      data-mage-init='{"validation":{}}' enctype ='multipart/form-data'>
+    <input name="id" id="id" title="<?php /* @escapeNotVerified */ echo __('Company Id') ?>"  value="2"  class="input-text" type="hidden"/>
+      <input name="logo" id="logo" title="<?php /* @escapeNotVerified */ echo __('Logo') ?>"  value="2"  class="input-text" type="hidden"/>
+    
+    <fieldset class="fieldset">
+        <h2>Upload a new logo</h2>
+        <div class="field required">
+            
+            <div class="control">
+                <input name="logo" id="logo" title ="<?= $block->escapeHtmlAttr(__('Upload a new logo')) ?>" class="admin__control-file required" value="<?=  $company['logo']; ?>" type="file"  accept="image/x-png,image/gif,image/jpeg/png" />
+            </div>
+            <p><i>Acceptable format .jpg .png .gif and recommended size 200px by 200px.</i></p>
+        </div> 
+        
+    </fieldset> 
+      <h2>Customize Theme Color</h2>
+
+    <fieldset class="fieldset">     
+
+    <ul class="theme-tabs">
+	    <li><a href="javascript:rudrSwitchTab('defaultOpen', 'content_1');" id="defaultOpen" class="tabmenu active">Mobile</a></li>
+	    <li><a href="javascript:rudrSwitchTab('tb_2', 'content_2');" id="tb_2" class="tabmenu">Desktop</a></li>
+    </ul>
+ 
+<div id="content_1" class="tabcontent mobile_form"> 
+
+        <div class=" field navigation_bar_bg_color required">
+            <label class="label required" for="panel_bg_color"><?php /* @escapeNotVerified */ echo __('Navigation bar background color') ?> <span class="font-icon-wrapper"><button class="ps-button" data-modal="modalA"><i class="fa fa-info" aria-hidden="true"></i></button></span></label>
+            <div class="control">
+                <input name="panel_bg_color" id="panel_bg_color" title="<?php /* @escapeNotVerified */ echo __('Navigation bar background color') ?>"  value="<?=  $company['navigation_bar_bg_color']; ?>" data-jscolor="{}" class="input-text required-entry jscolor {required:false}" type="text" data-validate="{required:true}"/>
+            </div>
+        </div>
+
+
+
+        <div class="field navigation_bar_font_color required">
+            <label class="label required" for="navigation_bar_font_color"><?= $block->escapeHtml(__('Navigation bar font color')) ?><span class="font-icon-wrapper"><button class="ps-button" data-modal="modalB"><i class="fa fa-info" aria-hidden="true"></i></button></span></label>
+            <div class="control">
+                <input name="navigation_bar_font_color" id="navigation_bar_font_color" title="<?= $block->escapeHtmlAttr(__('Navigation bar font color')) ?>" value="<?=  $company['navigation_bar_font_color']; ?>" data-jscolor="{}" class="input-text" type="text" data-validate="{required:true}"/>
+
+            </div>
+        </div>
+
+        <div class="field large_action_button_bg_color required">
+            <label class="label required" for="large_action_button_bg_color"><?= $block->escapeHtml(__('Large action button background color')) ?><span class="font-icon-wrapper"><button class="ps-button" data-modal="modalC"><i class="fa fa-info" aria-hidden="true"></i></button></span></label>
+            <div class="control">
+                <input name="large_action_button_bg_color" id="large_action_button_bg_color" title="<?= $block->escapeHtmlAttr(__('Large action button background color')) ?>" value="<?=  $company['large_action_button_bg_color']; ?>" data-jscolor="{}" class="input-text" type="text" />
+            </div>
+        </div>
+        <div class="field large_action_button_font_color required">
+            <label class="label required" for="large_action_button_font_color"><?= $block->escapeHtml(__('Large action button font color')) ?><span class="font-icon-wrapper"><button class="ps-button" data-modal="modalD"><i class="fa fa-info" aria-hidden="true"></i></button></span></label>
+            <div class="control">
+                <input name="large_action_button_font_color" id="large_action_button1_font_color" title="<?= $block->escapeHtmlAttr(__('Large action button font color')) ?>" value="<?=  $company['large_action_button_font_color']; ?>" data-jscolor="{}" class="input-text" type="text" />
+
+            </div>
+        </div>
+        <div class="field small_action_button_bg_color required">
+            <label class="label required" for="small_action_button_bg_color"><?= $block->escapeHtml(__('Small action button-1 background color')) ?><span class="font-icon-wrapper"><button class="ps-button" data-modal="modalE"><i class="fa fa-info" aria-hidden="true"></i></button></span></label>
+            <div class="control">
+
+                <input name="small_action_button_bg_color" id="small_action_button_bg_color" title="<?= $block->escapeHtmlAttr(__('Small action button-1 background color')) ?>" data-jscolor="{}" value="<?=  $company['small_action_button_bg_color']; ?>" class="input-text" type="text" />
+            </div>
+        </div>
+        <div class="field small_action_button_font_color required">
+            <label class="label required" for="small_action_button_font_color"><?= $block->escapeHtml(__('Small action button-1 font color')) ?><span class="font-icon-wrapper"><button class="ps-button" data-modal="modalF"><i class="fa fa-info" aria-hidden="true"></i></button></span></label>
+            <div class="control">
+
+                <input name="small_action_button_font_color" id="small_action_button_font_color" title="<?= $block->escapeHtmlAttr(__('Small action button-1 font color')) ?>" value="<?=  $company['small_action_button_font_color']; ?>" data-jscolor="{}" class="input-text" type="text" />
+            </div>
+        </div> 
+        <div class="field medium_action_button_bg_color required">
+            <label class="label required" for="medium_action_button_bg_color"><?= $block->escapeHtml(__('Small action button-2 background color')) ?><span class="font-icon-wrapper"><button class="ps-button" data-modal="modalG"><i class="fa fa-info" aria-hidden="true"></i></button></span></label>
+            <div class="control">
+
+                <input name="medium_action_button_bg_color" id="medium_action_button_bg_color" title="<?= $block->escapeHtmlAttr(__('Small action button-2 background color')) ?>" value="<?=  $company['medium_action_button_bg_color']; ?>" data-jscolor="{}" class="input-text" type="text" />
+            </div>
+        </div>   
+        <div class="field medium_action_button_font_color required">
+            <label class="label required" for="medium_action_button_font_color"><?= $block->escapeHtml(__('Small action button-2 font color')) ?><span class="font-icon-wrapper"><button class="ps-button" data-modal="modalH"><i class="fa fa-info" aria-hidden="true"></i></button></span></label>
+            <div class="control">
+
+                <input name="medium_action_button_font_color" id="medium_action_button_font_color" title="<?= $block->escapeHtmlAttr(__('Small action button-2 font color')) ?>" value="<?=  $company['medium_action_button_font_color']; ?>" data-jscolor="{}" class="input-text" type="text" />
+            </div>
+        </div> 
+        <div class="field heading_font_color required">
+            <label class="label required" for="heading_font_color"><?= $block->escapeHtml(__('Heading font color')) ?><span class="font-icon-wrapper"><button class="ps-button" data-modal="modalI"><i class="fa fa-info" aria-hidden="true"></i></button></span></label>
+            <div class="control">
+
+                <input name="heading_font_color" id="heading_font_color" title="<?= $block->escapeHtmlAttr(__('Heading font color')) ?>" value="<?=  $company['heading_font_color']; ?>" data-jscolor="{}" class="input-text" type="text" />
+            </div>
+        </div>  
+
+        <div class="primary">
+            <input type="button" class="input-submit button preview-btn"  name="mobile_preview" id="mobile_preview" value="Preview">
+        </div>
+</div>
+
+<div id="content_2" class="tabcontent desktop_preview" style="display:none;">                   
+        <div class=" field portal_bg_color required">
+            <label class="label required" for="portal_bg_color"><?php /* @escapeNotVerified */ echo __('Theme Color') ?><span class="font-icon-wrapper"><button class="ps-button" data-modal="modalJ"><i class="fa fa-info" aria-hidden="true"></i></button></span></label>
+            <div class="control">
+                <input name="portal_bg_color" id="portal_bg_color" title="<?php /* @escapeNotVerified */ echo __('Theme Color') ?>" value="<?=  $company['portal_bg_color']; ?>" data-jscolor="{}" class="input-text " type="text" data-validate="{required:true}"/>
+            </div>
+        </div>
+        <div class="field portal_font_color required">
+            <label class="label required" for="portal_font_color"><?= $block->escapeHtml(__('Theme Font Color')) ?><span class="font-icon-wrapper"><button class="ps-button" data-modal="modalK"><i class="fa fa-info" aria-hidden="true"></i></button></span></label>
+            <div class="control">
+                <input name="portal_font_color" id="portal_font_color" title="<?= $block->escapeHtmlAttr(__('Theme Font Color')) ?>" value="<?=  $company['portal_font_color']; ?>" data-jscolor="{}" class="input-text" type="text" data-validate="{required:true}"/>
+            </div>
+        </div>
+        
+         <div class="primary">
+            <input type="button" class="input-submit button preview-btn"  name="desktop_preview" id="desktop_preview" value="Preview">
+        </div>
+</div>
+
+        <h2>Part Number Preference</h2>                             
+        <div class="field bdrbx-ot name required">
+            <label class="label" for="name"><span><?= $block->escapeHtml(__('Set part number preference for the application')) ?></span></label>
+            <div class="control">
+                <select name="partnumber_preference" id="partnumber_preference">
+                    <option value="1" <?=$company['partnumber_preference'] == '1' ? ' selected="selected"' : '';?>>Show part number in app,use my part number in requisitions</option>
+                    <option value="2" <?=$company['partnumber_preference'] == '2' ? ' selected="selected"' : '';?>>Show FAO part number in app,use my part numbers in requisitions</option>
+                    <option value="3" <?=$company['partnumber_preference'] == '3' ? ' selected="selected"' : '';?>>Show both part numbers in app,use my part number in requsitions</option>         
+                </select>
+
+            </div>
+        </div>
+        <h2>Store Hours</h2>
+        <div class="field hours required">
+            <div class="control">
+                <input name="hours" id="hours" title="<?= $block->escapeHtmlAttr(__('Store Hours')) ?>" value="<?=  $company['hours']; ?>" class="input-text" type="text" data-validate="{required:true}"/>
+            </div>
+        </div>         
+        <h2 class="themecstmize">Restock against Requisition</h2>                             
+        <div class="field restock required">
+            <label class="label" for="restock"><span><?= $block->escapeHtml(__('Set restock against requisition option')) ?></span></label>
+            <div class="control">
+                <select name="restock" id="restock">
+                    <option value="1" <?=$company['restock'] == '1' ? ' selected="selected"' : '';?>>Enable</option>
+                    <option value="2" <?=$company['restock'] == '2' ? ' selected="selected"' : '';?>>Disable</option>         
+                </select>
+
+            </div>
+        </div>
+        <h2 class="themecstmize">Requistion Approval Mode</h2>                             
+        <div class="field approval_mode required">
+            <label class="label" for="approval_mode"><span><?= $block->escapeHtml(__('Set requistion approval status for the company')) ?></span></label>
+            <div class="control">
+                <select name="approval_mode" id="approval_mode">
+                    <option value="1" <?=$company['approval_mode'] == '1' ? ' selected="selected"' : '';?>>Enable Requistion Approval</option>
+                    <option value="2" <?=$company['approval_mode'] == '2' ? ' selected="selected"' : '';?>>Disable Requistion Approval</option>         
+                </select>
+
+            </div>
+        </div>
+        <div class="field interval required">
+            <label class="label" for="interval"><span><?= $block->escapeHtml(__('Mail Transfer Approval')) ?></span></label>
+            <div class="control">
+                <select name="interval" id="interval">
+                    <option value="0"  <?=$company['interval'] == '0' ? ' selected="selected"' : '';?>>Immediately</option>
+                    <option value="1"  <?=$company['interval'] == '1' ? ' selected="selected"' : '';?>>Daily</option>  
+                    <option value="2"  <?=$company['interval'] == '2' ? ' selected="selected"' : '';?>>Weekly</option>
+                    <option value="3"  <?=$company['interval'] == '3' ? ' selected="selected"' : '';?>>Monthly</option> 
+                </select>
+
+            </div>
+        </div>           
+    </fieldset>
+    <div class="actions-toolbar">
+        <div class="primary">
+
+            <button type="button" title="<?= $block->escapeHtmlAttr(__('Submit')) ?>" id="customize_btn" class="action button submit primary">
+                <span><?= $block->escapeHtml(__('Submit')) ?></span>
+            </button>
+            <button type="button" title="<?= $block->escapeHtmlAttr(__('Reset')) ?>" id="reset_preview" class="action button submit primary">
+                <span><?= $block->escapeHtml(__('Reset')) ?></span>
+            </button>
+
+        </div>
+    </div>
+</form>
+</div>
+
+<div class="half-inbx">
+<div id="main-frame">
+<div id="preivew-screen">
+<div id="phone-container" class="owl-carousel owl-theme">
+                <div class="item phone-view">
+
+                    <div class="topBar"><h1>My Account</h1></div>
+
+                    <div class="accountSection">
+                        <div class="section-left">
+                            <h2>John Doe</h2>
+                            <a href="#">john.doe@domain.com</a>
+                        </div>
+                        <div class="section-right"><img src=""/></div>
+                    </div>
+
+                    <ul class="accountList">
+                        <li><span class="ma-icon icon-download"></span>Download Emergency First Aid Guide <i class="fa fa-angle-left shiftright fa-flip-horizontal"></i></li>
+                        <li><span class="ma-icon icon-draft"></span>Draft <i class="fa fa-angle-left shiftright fa-flip-horizontal"></i></li>
+                        <li><span class="ma-icon icon-history"></span>Requisition History <i class="fa fa-angle-left shiftright fa-flip-horizontal"></i></li>
+                        <li><span class="ma-icon icon-requisition"></span>Review Requisition <i class="fa fa-angle-left shiftright fa-flip-horizontal"></i></li>
+                        <li><span class="ma-icon icon-subscription"></span>Subscription <i class="fa fa-angle-left shiftright fa-flip-horizontal"></i></li>
+                        <li><span class="ma-icon icon-profile"></span>Edit Profile <i class="fa fa-angle-left shiftright fa-flip-horizontal"></i></li>
+                        <li><span class="ma-icon icon-password"></span>Change Password <i class="fa fa-angle-left shiftright fa-flip-horizontal"></i></li>
+                        <li><span class="ma-icon icon-logout"></span>Logout <i class="fa fa-angle-left shiftright fa-flip-horizontal"></i></li>
+                    </ul>
+
+
+                    <div id="bottomBar"></div>
+                </div>
+
+
+                <div class="item phone-view">
+
+                    <div class="topBar"><span class="fa fa-angle-left"></span><h1>Review Requisition</h1></div>
+
+                    <div class="requisitionHead">
+                        <div class="sectionLeft">Item Name</div>
+                        <div class="sectionRight">Qty</div>
+                    </div>
+
+                    <ul class="requisitionList">
+                        <li><p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been</p> <span>5</span></li>
+                        <li><p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been</p> <span>5</span></li>
+                        <li><p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been</p> <span>5</span></li>
+                        <li><p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been</p> <span>5</span></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+
+                    </ul>
+
+
+                    <div id="actionBar">
+                        <div class="btn-action btn-edit">Edit</div>
+                        <div class="btn-action btn-draft">Save as Draft</div>
+                        <div class="btn-action btn-proceed">Proceed To Requisition</div>
+                    </div>
+
+                </div>
+
+
+                <div class="item phone-view">
+                    <div class="topBar"><span class="fa fa-angle-left"></span><h1>Registration</h1></div>
+
+
+                    <ul class="registrationFrm">
+                        <!--<li>Phone no * </li>-->
+                        <li>Cabinet model no. * </li>
+                        <li>Cabinet serial no. *</li>
+                        <li>Cabinet nickname</li>
+                        <li>Requisition email *</li>
+                        <li>Password *</li>
+                        <li>Confirm Password *</li>
+                        <li><span class="push-notification">Remind me to refill cabinet</span>30 Days <div class="checkbox_img"></div></li>
+                    </ul>
+
+
+
+                    <div class="btn-action btn-register">Register</div>
+
+                </div>
+
+
+            </div>
+
+
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<!-- Popup 1 - Navigation bar background color -->
+<div id="modalA" class="ps-modal">
+  <div class="ps-modal-content">
+      <a class="ps-close">&times;</a>
+      <div class="caption">Navigation bar</div>
+      <div class="img"><img src="<?php echo $block->getViewFileUrl('Vgroup_SafetyHubApp::images/Personalization-popup/fao_app_topBar.png'); ?>" alt=""></div>
+      <div class="txt">Top navigation bar background color</div>
+  </div>
+</div>
+
+<!-- Popup 2 - Navigation bar font color -->
+<div id="modalB" class="ps-modal">
+  <div class="ps-modal-content">
+      <a class="ps-close">&times;</a>
+      <div class="caption">Navigation bar font color</div>
+      <div class="img"><img src="<?php echo $block->getViewFileUrl('Vgroup_SafetyHubApp::images/Personalization-popup/fao_app_topBar_font.png'); ?>" alt=""></div>
+      <div class="txt">Top navigation bar font color</div>
+  </div>
+</div>
+
+<!-- Popup 3 - Large action button background color -->
+<div id="modalC" class="ps-modal">
+  <div class="ps-modal-content">
+      <a class="ps-close">&times;</a>
+      <div class="caption">Large action button</div>
+      <div class="img"><img src="<?php echo $block->getViewFileUrl('Vgroup_SafetyHubApp::images/Personalization-popup/fao_app_large_action_btn.png'); ?>" alt=""></div>
+      <div class="txt">Large action button background color</div>
+  </div>
+</div>
+
+<!-- Popup 4 - Large action button font color -->
+<div id="modalD" class="ps-modal">
+  <div class="ps-modal-content">
+      <a class="ps-close">&times;</a>
+      <div class="caption">Large action button</div>
+      <div class="img"><img src="<?php echo $block->getViewFileUrl('Vgroup_SafetyHubApp::images/Personalization-popup/fao_app_large_action_btn_text.png'); ?>" alt=""></div>
+      <div class="txt">Large action button font color</div>
+  </div>
+</div>
+
+<!-- Popup 5 - Small action button-1 background color -->
+<div id="modalE" class="ps-modal">
+  <div class="ps-modal-content">
+      <a class="ps-close">&times;</a>
+      <div class="caption">Small action button - 1</div>
+      <div class="img"><img src="<?php echo $block->getViewFileUrl('Vgroup_SafetyHubApp::images/Personalization-popup/fao_app_smallact_btn_1_1.png'); ?>" alt=""></div>
+      <div class="txt">Small action button-1 background color</div>
+  </div>
+</div>
+
+<!-- Popup 6 - Small action button-1 font color -->
+<div id="modalF" class="ps-modal">
+  <div class="ps-modal-content">
+      <a class="ps-close">&times;</a>
+      <div class="caption">Small action button - 1</div>
+      <div class="img"><img src="<?php echo $block->getViewFileUrl('Vgroup_SafetyHubApp::images/Personalization-popup/fao_app_smallact_btn_1_2.png'); ?>" alt=""></div>
+      <div class="txt">Small action button-1 font color</div>
+  </div>
+</div>
+
+<!-- Popup 7 - Small action button-2 background color -->
+<div id="modalG" class="ps-modal">
+  <div class="ps-modal-content">
+      <a class="ps-close">&times;</a>
+      <div class="caption">Small action button - 2</div>
+      <div class="img"><img src="<?php echo $block->getViewFileUrl('Vgroup_SafetyHubApp::images/Personalization-popup/fao_app_smallact_btn_2_1.png'); ?>" alt=""></div>
+      <div class="txt">Small action button-2 background color</div>
+  </div>
+</div>
+
+<!-- Popup 8 - Small action button-2 font color -->
+<div id="modalH" class="ps-modal">
+  <div class="ps-modal-content">
+      <a class="ps-close">&times;</a>
+      <div class="caption">Small action button - 2</div>
+      <div class="img"><img src="<?php echo $block->getViewFileUrl('Vgroup_SafetyHubApp::images/Personalization-popup/fao_app_smallact_btn_2_2.png'); ?>" alt=""></div>
+      <div class="txt">Small action button-2 font color</div>
+  </div>
+</div>
+
+<!-- Popup 9 - Heading font color -->
+<div id="modalI" class="ps-modal">
+  <div class="ps-modal-content">
+      <a class="ps-close">&times;</a>
+      <div class="caption">Heading font color</div>
+      <div class="img"><img src="<?php echo $block->getViewFileUrl('Vgroup_SafetyHubApp::images/Personalization-popup/fao_app_heading_color.png'); ?>" alt=""></div>
+      <div class="txt">Heading font color</div>
+  </div>
+</div>
+
+<!-- Popup 10 - Theme Color -->
+<div id="modalJ" class="ps-modal">
+  <div class="ps-modal-content fordesk">
+      <a class="ps-close">&times;</a>
+      <div class="caption">Theme color</div>
+      <div class="img"><img src="<?php echo $block->getViewFileUrl('Vgroup_SafetyHubApp::images/Personalization-popup/fao_app_desktop_theme.png'); ?>" alt=""></div>
+      <div class="txt">Top heading bar, button and left navigation</div>
+  </div>
+</div>
+
+<!-- Popup 11 - Theme fonts color -->
+<div id="modalK" class="ps-modal">
+  <div class="ps-modal-content fordesk">
+      <a class="ps-close">&times;</a>
+      <div class="caption">Theme fonts color</div>
+      <div class="img"><img src="<?php echo $block->getViewFileUrl('Vgroup_SafetyHubApp::images/Personalization-popup/fao_app_desktop_fonts.png'); ?>" alt=""></div>
+      <div class="txt">Fonts color</div>
+  </div>
+</div>
+
+
+
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> 
+<script>
+$(document).ready(function(){
+  
+  $("#desktop_preview").click(function(){
+        var bgColor = '#' + $("#portal_bg_color").val();
+         var fontColor = '#' + $("#portal_font_color").val();
+     // alert(bgColor);
+          $(".sidebar.sidebar-main, #account-nav, ul.nav.items,li.current strong").css('color',bgColor);
+     
+     
+  
+  });
+});
+</script>-->
+
+
+<style>
+/* Personalization Page */
+div.mobile_form div.field,  div.desktop_form div.field{   border: 1px solid #ddd; box-shadow: 0 0 2px #ccc; -moz-box-shadow: 0 0 2px #ccc; -webkit-box-shadow: 0 0 2px #ccc;  -o-box-shadow: 0 0 2px #ccc; float: left;  margin-right: 2%;  margin-top: 15px;  min-height: 107px;  padding: 2%;  position: relative; width: 30%;}
+div.mobile_form div.field:hover,  div.desktop_form div.field:hover{box-shadow: 0 0 6px #bababa; -moz-box-shadow: 0 0 6px #bababa; -webkit-box-shadow: 0 0 6px #bababa;  -o-box-shadow: 0 0 6px #bababa;}
+
+
+.btn{    display: inline-block;  padding: 6px 12px; margin-bottom: 0;  font-size: 14px;  font-weight: normal;  line-height: 1.42857143;  text-align: center;  white-space: nowrap;  vertical-align: middle;   -ms-touch-action: manipulation;  touch-action: manipulation;  cursor: pointer;  -webkit-user-select: none;  -moz-user-select: none;  -ms-user-select: none;  user-select: none;  background-image: none; border: 1px solid transparent;  }
+.btn-primary{    color: #333;  background-color: #fff;  border-color: #ccc;}
+.fileUpload { position: relative;  overflow: hidden;  margin: 10px;}
+.fileUpload input.upload { position: absolute; top: 0; right: 0; margin: 0; padding: 0; font-size: 20px;  cursor: pointer; opacity: 0; filter: alpha(opacity=0);}
+
+div.mobile_form div.actionPreview,  div.desktop_form div.actionPreview{ clear:both;}
+div.mobile_form div.actionPreview input[type="button"],  div.desktop_form div.actionPreview input[type="button"]{background-color: #fff !important;  margin-top: 26px; color: #000  !important; padding: 10px 40px; border: #333 solid 4px; font-size: 20px;  font-weight: bold;    margin-top: 26px;}
+div.mobile_form div.actionPreview input[type="button"]:hover,  div.desktop_form div.actionPreview input[type="button"]:hover{ background-color: #333 !important; color: #fff  !important;}
+	
+
+/*Slide -1 */
+.accountSection{border-bottom:#d3d1d4 solid 1px;   padding:15px 0 15px 52px; overflow:hidden;}
+.accountSection h2 { color:#275a87; font-size:16px; margin: 0;}
+.accountSection a { color:#275a87; text-decoration:none; font-size:13px;}
+.accountSection .section-left{ width:70%; float:left; }
+.accountSection .section-right{ width:18%; float:right;     margin-right: 20px;}
+
+ul.accountList li{ border-bottom:#d3d1d4 solid 1px;font-family:Arial; font-size:12px; color:#275a87; padding:8px 0; margin: 0;; width:100%; display:block; line-height: 25px;}
+ul.accountList li i.shiftright{ float:right; font-size:22px; color:#bbbbbb; margin:0 10px;}
+	
+#phone-container .topBar{ background:#275a87; height:40px;}
+#phone-container .topBar span{ color:#fff; font-size:32px; position:absolute; top:0px; left:15px;}
+#phone-container .topBar h1{ color:#fff; text-align:center; font-family:Arial,Helvetica,sans-serif; font-size:18px; font-weight:normal; line-height:37px; text-transform: capitalize;}
+#phone-container{ width:340px; height:692px; margin:2% auto 0 auto; background:url("https://app.firstaidonly.com/skin/frontend/fao_app/default/images/iphone6.png") no-repeat; background-size:100%;}
+
+.ma-icon{ width:24px; height:24px; margin:0 10px 0 15px; background-color:#275a87; float:left;  background-size: 100% 100%;}
+.ma-icon.icon-download{ background-image: url("https://app.firstaidonly.com/skin/frontend/fao_app/default/images/icon_download.png") ;}
+.ma-icon.icon-draft{ background-image: url("https://app.firstaidonly.com/skin/frontend/fao_app/default/images/icon_draft.png");}
+.ma-icon.icon-history{ background-image: url("https://app.firstaidonly.com/skin/frontend/fao_app/default/images/icon_history.png");}
+.ma-icon.icon-requisition{ background-image: url("https://app.firstaidonly.com/skin/frontend/fao_app/default/images/icon_requisition.png");}
+.ma-icon.icon-subscription{ background-image: url("https://app.firstaidonly.com/skin/frontend/fao_app/default/images/icon_subscription.png");}
+.ma-icon.icon-profile{ background-image: url("https://app.firstaidonly.com/skin/frontend/fao_app/default/images/icon_profile.png");}
+.ma-icon.icon-password{ background-image: url("https://app.firstaidonly.com/skin/frontend/fao_app/default/images/icon_password.png");}
+.ma-icon.icon-logout{ background-image: url("https://app.firstaidonly.com/skin/frontend/fao_app/default/images/icon_logout.png");}
+
+#bottomBar{ background-color:#275a87; background-size: 100% auto; background-image:url("https://app.firstaidonly.com/skin/frontend/fao_app/default/images/bottom_bar.png"); background-repeat:no-repeat; height:38px; position:absolute; bottom:0;width:100%;}
+
+/*Slide -2 */
+.requisitionHead{background:#eaeaea; height:29px; font-size:12px; color:#023e73;}
+.requisitionHead div{ margin:5px 10px;}
+.requisitionHead .sectionLeft{ float:left;}
+.requisitionHead .sectionRight{float:right; margin-right:15px;}
+
+.requisitionList li{ border-bottom:#ccc solid 1px; background:#ffff; padding:10px; min-height:50px; font-size:10px; font-style:italic; color:#9f9f9f; margin: 0; list-style: none;}
+.requisitionList li:empty{ background:#e8e8e8;}
+.requisitionList li p {display:block; float:left; width:90%;}
+.requisitionList li span{ display:block; float:right; width:10%; text-align:center;}
+
+#actionBar { background: #373737; position: absolute; bottom: 0; width: 100%;  height: 50px;}
+#actionBar .btn-action { border-radius: 2px; color: #fff;  float: left;  padding: 10px 7px;  margin: 5px 3px 0; font-size: 12px;}
+#actionBar .btn-edit{ background:#1e7fbd;}
+#actionBar .btn-draft{ background:#1e7fbd;}
+#actionBar .btn-proceed{ background:#ffb10a;}
+
+
+/*Slide-3*/
+.registrationFrm{ width:86%; margin:0 auto;}
+.registrationFrm li{ position:relative; border-bottom:#cdcdcd solid 1px; background:#ffff; padding:12px 0px 0 0px; min-height:33px; font-size:13px; color:#c6c6c6; line-height: 33px; margin:0; list-style:none;}
+.registrationFrm li:empty{ background:#e8e8e8;}
+.registrationFrm li p {display:block; float:left; width:90%;}
+.registrationFrm li span{ display:block; color:#275a87; }
+.registrationFrm li div.checkbox_img{ background-image:url("https://app.firstaidonly.com/skin/frontend/fao_app/default/images/input_checkbox_bg.png"); background-repeat:no-repeat; background-color:#275a87; width:52px; height:33px; position:absolute; right:0; top:25px;}
+.btn-action.btn-register{     background: #275a87;  color: #fff; padding: 8px; width: 75%; margin: 0 auto; border-radius: 4px; text-align: center; font-size: 16px; font-weight: 200;  margin-top: 42px;}
+</style>
+

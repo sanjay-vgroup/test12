@@ -1,0 +1,30 @@
+<?php $_items = $this->getItems(); ?>
+<?php if ($_items) : ?>
+    <?php $_itemCount = count($_items); ?>
+    <table width="100%" border="0" cellpadding="5" style="font-size:12px;">
+        <tr bgcolor="<?= $this->getBgcolor() ?>" align="left">
+            <th scope="col" width="80%" style="background-color:<?= $this->getBgcolor() ?> !important;">
+                <?php if ($_itemCount > 1) : ?>
+                    <?php echo $block->escapeHtml(__('Items')); ?>
+                <?php else : ?>
+                    <?php echo $block->escapeHtml(__('Item')); ?>
+                <?php endif; ?>
+            </th>
+            <th scope="col" width="20%" align="center" style="background-color:<?= $this->getBgcolor() ?> !important;">QTY</th>
+        </tr>
+
+        <?php
+        foreach ($_items as $item) :
+        ?>
+            <tr>
+                <td width="80%" style="padding:5px; border-bottom:#ccc dotted 1px;">
+                    <span style="font-weight:bold;"><?= $item['name'] ?? ""; ?></span>
+                    <br>
+                    <i>Item No.: <?= $item['fao_part'] ?? ""; ?></i>
+                    <?php if (!empty($item['upc'])) : ?><br><i>UPC.: <?php echo $item['upc'] ?></i></b> <?php endif; ?>
+                </td>
+                <td width="20%" style="padding:5px; border-bottom:#ccc dotted 1px;" align="center"><?php echo $item['qty'] ?></td>
+            </tr>
+        <?php endforeach; ?>
+    </table>
+<?php endif; ?>

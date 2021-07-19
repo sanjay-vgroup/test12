@@ -1,0 +1,186 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="safetyitems_grid_data_source" xsi:type="string">Vgroup\SafetyHubApp\Model\ResourceModel\SafetyItems\Grid\Collection</item>
+                <item name="companies_grid_data_source" xsi:type="string">Vgroup\SafetyHubApp\Model\ResourceModel\Companies\Grid\Collection</item>
+                <item name="customer_listing_data_source" xsi:type="string">Magento\Customer\Model\ResourceModel\Grid\Collection</item>
+                <item name="requisitions_grid_data_source" xsi:type="string">Vgroup\SafetyHubApp\Model\ResourceModel\Requisitions\Grid\Collection</item>
+                <item name="safetyusers_grid_data_source" xsi:type="string">Vgroup\SafetyHubApp\Model\ResourceModel\SafetyUsers\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Vgroup\SafetyHubApp\Model\ResourceModel\SafetyItems\Grid\Collection">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">safetyhubapp_items</argument>
+            <argument name="eventPrefix" xsi:type="string">safety_item_grid_collection</argument>
+            <argument name="eventObject" xsi:type="string">safety_item_grid_collection</argument>
+            <argument name="resourceModel" xsi:type="string">Vgroup\SafetyHubApp\Model\ResourceModel\SafetyItems</argument>
+        </arguments>	
+    </type>
+    <virtualType name="SafetyItemsGridDataProvider" type="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider">
+        <arguments>
+            <argument name="collection" xsi:type="object" shared="false">Vgroup\SafetyHubApp\Model\ResourceModel\SafetyItems\Collection</argument>
+            <argument name="filterPool" xsi:type="object" shared="false">SafetyItemsGridFilterPool</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="SafetyItemsGridFilterPool" type="Magento\Framework\View\Element\UiComponent\DataProvider\FilterPool">
+        <arguments>
+            <argument name="appliers" xsi:type="array">
+                <item name="regular" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\RegularFilter</item>
+                <item name="fulltext" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\FulltextFilter</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    
+    <type name="Vgroup\SafetyHubApp\Model\ResourceModel\Companies\Grid\Collection">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">safetyhubapp_companies</argument>
+            <argument name="eventPrefix" xsi:type="string">companies_grid_collection</argument>
+            <argument name="eventObject" xsi:type="string">companies_grid_collection</argument>
+            <argument name="resourceModel" xsi:type="string">Vgroup\SafetyHubApp\Model\ResourceModel\Companies</argument>
+        </arguments>	
+    </type>
+    <virtualType name="CompaniesGridDataProvider" type="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider">
+        <arguments>
+            <argument name="collection" xsi:type="object" shared="false">Vgroup\SafetyHubApp\Model\ResourceModel\Companies\Collection</argument>
+            <argument name="filterPool" xsi:type="object" shared="false">CompaniesGridFilterPool</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="CompaniesGridFilterPool" type="Magento\Framework\View\Element\UiComponent\DataProvider\FilterPool">
+        <arguments>
+            <argument name="appliers" xsi:type="array">
+                <item name="regular" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\RegularFilter</item>
+                <item name="fulltext" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\FulltextFilter</item>
+            </argument>
+        </arguments>
+    </virtualType>
+     <!---For safety Users-->
+     
+     
+     <type name="Vgroup\SafetyHubApp\Model\ResourceModel\SafetyUsers\Grid\Collection">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">customer_entity</argument>
+            <argument name="eventPrefix" xsi:type="string">safetyusers_grid_collection</argument>
+            <argument name="eventObject" xsi:type="string">safetyusers_grid_collection</argument>
+            <argument name="resourceModel" xsi:type="string">Vgroup\SafetyHubApp\Model\ResourceModel\SafetyUsers</argument>
+        </arguments>	
+    </type>
+    <virtualType name="SafetyUsersGridDataProvider" type="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider">
+        <arguments>
+            <argument name="collection" xsi:type="object" shared="false">Vgroup\SafetyHubApp\Model\ResourceModel\SafetyUsers\Collection</argument>
+            <argument name="filterPool" xsi:type="object" shared="false">CompaniesGridFilterPool</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="SafetyUsersGridFilterPool" type="Magento\Framework\View\Element\UiComponent\DataProvider\FilterPool">
+        <arguments>
+            <argument name="appliers" xsi:type="array">
+                <item name="regular" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\RegularFilter</item>
+                <item name="fulltext" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\FulltextFilter</item>
+            </argument>
+        </arguments>
+    </virtualType>
+     
+     
+     <!-- end -->
+   
+    <type name="Vgroup\SafetyHubApp\Model\ResourceModel\Requisitions\Grid\Collection">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">safetyhubapp_requisitions</argument>
+            <argument name="eventPrefix" xsi:type="string">requisitions_grid_collection</argument>
+            <argument name="eventObject" xsi:type="string">requisitions_grid_collection</argument>
+            <argument name="resourceModel" xsi:type="string">Vgroup\SafetyHubApp\Model\ResourceModel\Requisitions</argument>
+        </arguments>
+		
+    </type>
+    <virtualType name="RequisitionsGridDataProvider" type="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider">
+        <arguments>
+            <argument name="collection" xsi:type="object" shared="false">Vgroup\SafetyHubApp\Model\ResourceModel\Requisitions\Collection</argument>
+            <argument name="filterPool" xsi:type="object" shared="false">RequisitionsGridFilterPool</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="RequisitionsGridFilterPool" type="Magento\Framework\View\Element\UiComponent\DataProvider\FilterPool">
+        <arguments>
+            <argument name="appliers" xsi:type="array">
+                <item name="regular" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\RegularFilter</item>
+                <item name="fulltext" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\FulltextFilter</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    
+    <preference for="Vgroup\SafetyHubApp\Api\SafetyUsersItemsRepositoryInterface" type="Vgroup\SafetyHubApp\Model\SafetyUsersItemsRepository" />
+    <preference for="Vgroup\SafetyHubApp\Api\Data\SafetyUsersItemsInterface" type="Vgroup\SafetyHubApp\Model\Data\SafetyUsersItems" />
+    <preference for="Vgroup\SafetyHubApp\Api\Data\SafetyUsersItemsSearchResultsInterface"  type="Vgroup\SafetyHubApp\Model\SafetyUsersItemsSearchResults" />
+    
+    <preference for="Vgroup\SafetyHubApp\Api\SafetyItemsRepositoryInterface"  type="Vgroup\SafetyHubApp\Model\SafetyItemsRepository" />
+    <preference for="Vgroup\SafetyHubApp\Api\Data\SafetyItemsInterface"  type="Vgroup\SafetyHubApp\Model\Data\SafetyItems" />
+    <preference for="Vgroup\SafetyHubApp\Api\Data\SafetyItemProductsInterface"  type="Vgroup\SafetyHubApp\Model\Data\SafetyItemProducts" />
+    <preference for="Vgroup\SafetyHubApp\Api\Data\SafetyItemsSearchResultsInterface"  type="Vgroup\SafetyHubApp\Model\SafetyItemsSearchResults" />
+    
+    <preference for="Vgroup\SafetyHubApp\Api\SafetyItemProductsSearchRepositoryInterface"  type="Vgroup\SafetyHubApp\Model\SafetyItemProductsSearchRepository" />
+    <preference for="Vgroup\SafetyHubApp\Api\Data\SafetyItemProductsSearchInterface"  type="Vgroup\SafetyHubApp\Model\Data\SafetyItemProductsSearch" />
+    <preference for="Vgroup\SafetyHubApp\Api\Data\SafetyItemProductsSearchResultsInterface"  type="Vgroup\SafetyHubApp\Model\SafetyItemProductsSearchResults" />
+    
+    <preference for="Vgroup\SafetyHubApp\Api\RequisitionsRepositoryInterface"  type="Vgroup\SafetyHubApp\Model\RequisitionsRepository" />
+    <preference for="Vgroup\SafetyHubApp\Api\Data\RequisitionsInterface"  type="Vgroup\SafetyHubApp\Model\Data\Requisitions" />
+    <preference for="Vgroup\SafetyHubApp\Api\Data\RequisitionsSearchResultsInterface"  type="Vgroup\SafetyHubApp\Model\RequisitionsSearchResults" />
+    
+    
+    <!-- <preference for="SimplifiedMagento\Database\Api\Data\AffiliateMemberSearchResultInterface" 
+    type="Magento\Framework\Api\SearchResults" />-->
+    
+    <preference for="Vgroup\SafetyHubApp\Api\CountryStateInterface" type="Vgroup\SafetyHubApp\Model\GetState"/>
+    <preference for="Vgroup\SafetyHubApp\Api\CompanyRepositoryInterface"  type="Vgroup\SafetyHubApp\Model\CompaniesRepository" />
+    <preference for="Vgroup\SafetyHubApp\Api\Data\CompanyInterface"  type="Vgroup\SafetyHubApp\Model\Companies" />
+    
+    <!--<preference for="Vgroup\SafetyHubApp\Api\ResponseRepositoryInterface"  type="Vgroup\SafetyHubApp\Model\ResponseRepository" />-->
+    <!-- <preference for="Vgroup\SafetyHubApp\Api\UserManagementInterface" type="Vgroup\SafetyHubApp\Model\UserManagement"/>
+    <preference for="Vgroup\SafetyHubApp\Api\Data\ApiResponseInterface" type="Vgroup\SafetyHubApp\Model\ApiResponse"/> 
+    <preference for="Vgroup\SafetyHubApp\Api\Data\CompanyLabelsInterface"  type="Vgroup\SafetyHubApp\Model\CompanyLabels" />-->
+    <preference for="Vgroup\SafetyHubApp\Api\Data\ResultInterface" type="Vgroup\SafetyHubApp\Model\Result"/>
+    <preference for="Vgroup\SafetyHubApp\Api\Data\UserGuideInterface" type="Vgroup\SafetyHubApp\Model\UserGuide"/>
+    <preference for="Vgroup\SafetyHubApp\Api\Data\CompaniesSearchResultsInterface"  type="Vgroup\SafetyHubApp\Model\CompaniesSearchResults" />
+    <preference for="Vgroup\SafetyHubApp\Api\Data\CompanyLabelsInterface"  type="Vgroup\SafetyHubApp\Model\CompanyLabels" />
+    
+    <preference for="Vgroup\SafetyHubApp\Api\Data\ReportInterface"  type="Vgroup\SafetyHubApp\Model\Data\Reports" />
+    <preference for="Vgroup\SafetyHubApp\Api\ReportsRepositoryInterface"  type="Vgroup\SafetyHubApp\Model\ReportsRepository" />
+    <type name="Magento\Customer\Api\CustomerRepositoryInterface">
+        <plugin name="get_company_theme" type="Vgroup\SafetyHubApp\Plugin\CustomerRepository"/>
+    </type>
+    <preference for="Vgroup\SafetyHubApp\Api\Data\CommonResponseInterface"  type="Vgroup\SafetyHubApp\Model\Data\CommonResponse" />
+    <preference for="Vgroup\SafetyHubApp\Api\CustomerTokenServiceInterface" type="Vgroup\SafetyHubApp\Model\Rewrite\SafetyHubCustomerTokenService" /> 
+    <preference for="Vgroup\SafetyHubApp\Api\Data\MessageInterface"  type="Vgroup\SafetyHubApp\Model\Data\Messages" />
+    <preference for="Vgroup\SafetyHubApp\Api\Data\ResponseInterface"  type="Vgroup\SafetyHubApp\Model\Data\Response" />
+    <preference for="Vgroup\SafetyHubApp\Api\OfflineSyncRepositoryInterface"  type="Vgroup\SafetyHubApp\Model\OfflineSyncRepository" />
+    <preference for="Vgroup\SafetyHubApp\Api\Data\OfflineSyncInterface"  type="Vgroup\SafetyHubApp\Model\Data\OfflineSync" />
+    <preference for="Vgroup\SafetyHubApp\Api\AccountManagementInterface"  type="Vgroup\SafetyHubApp\Model\Rewrite\SafetyHubAppAccountManagement" />
+    <preference for="Vgroup\SafetyHubApp\Model\EmailNotificationInterface"  type="Vgroup\SafetyHubApp\Model\EmailNotification" />
+    <preference for="Vgroup\SafetyHubApp\Api\CustomerRevokeTokenServiceInterface" 
+                type="Vgroup\SafetyHubApp\Model\Rewrite\CustomerRevokeTokenService" />
+    
+    <type name="Vgroup\SafetyHubApp\Model\ResourceModel\CabinetSerialNumbers\Grid\Collection">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">safetyhubapp_safetyitem_serials</argument>
+            <argument name="eventPrefix" xsi:type="string">cabinet_serial_numbers_grid_collection</argument>
+            <argument name="eventObject" xsi:type="string">cabinet_serial_numbers_grid_collection</argument>
+            <argument name="resourceModel" xsi:type="string">Vgroup\SafetyHubApp\Model\ResourceModel\CabinetSerialNumbers</argument>
+        </arguments>	
+    </type>
+    <virtualType name="CabinetSerialNumbersGridDataProvider" type="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider">
+        <arguments>
+            <argument name="collection" xsi:type="object" shared="false">Vgroup\SafetyHubApp\Model\ResourceModel\CabinetSerialNumbers\Collection</argument>
+            <argument name="filterPool" xsi:type="object" shared="false">CabinetSerialNumbersGridFilterPool</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="CabinetSerialNumbersGridFilterPool" type="Magento\Framework\View\Element\UiComponent\DataProvider\FilterPool">
+        <arguments>
+            <argument name="appliers" xsi:type="array">
+                <item name="regular" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\RegularFilter</item>
+                <item name="fulltext" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\FulltextFilter</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    
+    <preference for="Magento\Customer\Model\AccountManagement" type="Vgroup\SafetyHubApp\Model\AccountManagement" />
+</config>

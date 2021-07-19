@@ -1,0 +1,58 @@
+ 
+ @theme_background: #339DC2;
+ @theme_color:#fff;
+
+.page-title-wrapper { 
+    background-color: @theme_background; 
+    color: @theme_color;
+    h1.page-title {
+        color: @theme_color;
+    }
+}
+#maincontent {
+    .columns {
+        .sidebar.sidebar-main {
+            #account-nav {
+                ul.nav.items {
+                    li {
+                        a:hover {
+                            background-color: @theme_background;
+                            color: @theme_color;
+                        }
+                    }
+                    li.current {
+                        strong {
+                            background-color: @theme_background;
+                            color: @theme_color;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+.columns {
+    .column.main {
+        button.primary {
+            background: @theme_background;
+            color: @theme_color;
+        }
+    }
+}
+.safetyhubapp-account-company { 
+    .tabcontent {
+        .preview-btn {
+            background: @theme_background;
+            color: @theme_color;
+        }
+    }
+}
+.data-grid {
+    th {
+        background: @theme_background;
+    }
+    .data-grid-th {
+        background: @theme_background;
+        color: @theme_color;
+    }
+}

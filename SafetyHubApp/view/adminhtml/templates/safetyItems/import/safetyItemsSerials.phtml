@@ -1,0 +1,30 @@
+
+    <div class="csv-layout">
+        <form class="importsafety myformdynamic" method="post" action="<?php echo $block->getUrl('*/*/importcsvserial/') ?>"  enctype="multipart/form-data">
+            <input name="form_key" type="hidden" value="<?php echo $block->getFormKey() ?>"> 
+              
+                    <div class="field name required">
+                        <label class="label" for="phone"><span><?= $block->escapeHtml(__('Import Behavior')) ?></span></label>                       
+                            <select name="action_type" id="action_type">
+                                <option value="add_update">Add new serial numbers</option>
+                                <!--<option value="replace">Replace</option>-->
+                                <option value="delete">Delete</option>
+                            </select>                  
+                    </div>               
+    
+            <div class="field name required">
+                <label class="label" for="csv"><span><?= $block->escapeHtml(__('CSV')) ?></span></label>                
+                    <input name="csv_file" id="csv_file" title="CSV File" value="" class="input-text" type="file" />             
+            </div>
+
+            <div class="field name required">
+                <label class="label" for="file"><span><?= $block->escapeHtml(__('Download Sample File')) ?></span></label>                
+                    <a href="<?= $block->getUrl() . '/pub/media/serial_import_sample_file.csv' ?>" download>Click To Download</a>               
+            </div>
+
+            <button class="c-btn" type="submit" name="save" value="Save">Save</button>
+        </form>
+    </div>
+
+
+

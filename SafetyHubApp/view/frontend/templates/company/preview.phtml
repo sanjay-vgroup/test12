@@ -1,0 +1,49 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+// @codingStandardsIgno
+
+$getCompany = $block->getCompany();
+ //print_r($block->checkFileExists());
+//echo '<pre>';
+//print_r($getCompany);
+//exit;
+?>
+<style>
+.col1-layout .col-main { margin:0px auto !important; width:768px !important; background:#fff; box-shadow:0px 0px 7px #ccc; padding:20px;}
+.col1-layout .col-main .email-temp-footer{ text-align:center; border-top:#ccc solid 1px; padding-top: 20px; margin-top:20px;}
+</style>
+
+<!-- Email Template Priview code start -->
+<div id="email-temp-preview">
+    <table cellspacing="0" cellpadding="0" border="0" width="100%" align="center" class="email-temp-preview">
+        <tr>
+            <td align="center" style="padding:10px 0 10px 0; border-bottom:#ccc solid 1px; text-align:center;">
+                <a href="#">
+                   
+                    <?php if(!empty($getCompany['logo'])) {
+                 
+                        if(!empty($block->checkFileExists())) {
+                        ?>
+                    <img src="<?php /* @escapeNotVerified */ echo $block->getLogoSrc() ?>" alt=""  style=" max-width: 100px;  max-height: 100px;  display: inline;"/>
+                    <?php } } else { ?>
+                    <img src="<?= $block->getViewFileUrl($block->getLogoSrc()) ?>" alt=""  style=" max-width: 100px;  max-height: 100px;  display: inline;"/>
+                    <?php } ?>
+                </a>
+            </td>
+        </tr>   
+        <tr>
+            <td style="padding-top: 10px;">
+                <?php echo $getCompany['email_template_content']; ?>
+            
+            </td>
+        </tr>
+
+    </table>
+  
+</div>
+<style type="text/css">
+
+</style>

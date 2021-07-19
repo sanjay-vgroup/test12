@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Vgroup_SafetyHubApp::core" title="SafetyHub App" module="Vgroup_SafetyHubApp" sortOrder="10" resource="Vgroup_SafetyHubApp::menu"/>
+		 <add id="Vgroup_SafetyHubApp::safetyhubappdashboard" title="Dashboard" module="Vgroup_SafetyHubApp" sortOrder="11" parent="Vgroup_SafetyHubApp::core" action="safetyhubapp/dashboard" resource="Vgroup_SafetyHubApp::safetyhubapp"/>
+        <add id="Vgroup_SafetyHubApp::safetyhubitems" title="Manage Safety Items" module="Vgroup_SafetyHubApp" sortOrder="12" parent="Vgroup_SafetyHubApp::core" action="safetyhubapp/safetyitems" resource="Vgroup_SafetyHubApp::safetyhubapp"/>
+        <add id="Vgroup_SafetyHubApp::safetyhubappcompanies" title="Manage Companies" module="Vgroup_SafetyHubApp" sortOrder="13" parent="Vgroup_SafetyHubApp::core" action="safetyhubapp/companies" resource="Vgroup_SafetyHubApp::safetyhubapp"/>
+        <add id="Vgroup_SafetyHubApp::safetyhubappusers" title="Manage Users" module="Vgroup_SafetyHubApp" sortOrder="14" parent="Vgroup_SafetyHubApp::core" action="safetyhubapp/users" resource="Vgroup_SafetyHubApp::safetyhubapp"/>	
+        <add id="Vgroup_SafetyHubApp::safetyhubapprequisitions" title="Manage Requisitions" module="Vgroup_SafetyHubApp" sortOrder="15" parent="Vgroup_SafetyHubApp::core" action="safetyhubapp/requisitions" resource="Vgroup_SafetyHubApp::safetyhubapp"/>
+       <!-- <add id="Vgroup_SafetyHubApp::safetyhubappimport" title="Import" module="Vgroup_SafetyHubApp" sortOrder="16" parent="Vgroup_SafetyHubApp::core" action="safetyhubapp/import" resource="Vgroup_SafetyHubApp::safetyhubapp"/>-->
+    </menu>
+</config>

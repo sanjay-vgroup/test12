@@ -1,0 +1,237 @@
+<?php
+$reguisition = $block->getRequisition()->getData();
+$approvedReguisition = $block->getApprovedRequisition()->getData();
+$rejectedRequisition = $block->getRejectedRequisition()->getData();
+$pendingRequisition = $block->getPendingRequisition()->getData();
+
+$companyCodes = $block->getCompany()->getData();
+
+ $customerEnterprise = $block->getCustomerEnterprise();
+$customer = $block->getCustomerStandard();
+$customerStandard=($customer-$customerEnterprise);
+?>
+<div class="outer-bx">
+
+    <fieldset class="fieldset form-inline entry-edit test">
+        <div class="dash-top">
+            <div class="activity_box box-blue">
+                <div class="innerbx">
+                    <i class="activity-icon">
+
+                    </i>
+                    <div class="activity-content">
+                        <span class="activity_counter"><?= count($reguisition) ?></span>
+                        <div class="activity-info">
+                            <span class="activity_heading">Requisition</span>
+                            <span class="activity_details"></span>
+                        </div>
+                        <div class="activity_details_wrapper">
+                            <div><span><?= count($approvedReguisition) ?></span> <label for="users" class="label"><?php /* @escapeNotVerified */ echo __('Approved') ?></label></div>
+                            <div><span><?= count($rejectedRequisition) ?></span> <label for="users" class="label"><?php /* @escapeNotVerified */ echo __('Rejected') ?></label></div>
+                            <div><span><?= count($pendingRequisition) ?></span> <label for="users" class="label"><?php /* @escapeNotVerified */ echo __('Pending') ?></label></div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="activity_box box-yellow">
+                <div class="innerbx">
+                    <i class="activity-icon">   
+                    </i>
+                    <div class="activity-content">
+                        <span class="activity_counter"><?= count($companyCodes) ?></span>
+                        <div class="activity-info">
+                            <span class="activity_heading">Company Codes</span>
+                            <span class="activity_details"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="activity_box box-green">
+                <div class="innerbx">
+                    <i class="activity-icon">      
+                    </i>
+                    <div class="activity-content">
+                        <span class="activity_counter"><?= $customer ?></span>
+                        <div class="activity-info">
+                            <span class="activity_heading">App Users</span>
+                            <span class="activity_details"></span>
+                        </div>
+                        <div class="activity_details_wrapper">
+                            <div><span><?= $customerEnterprise ?></span> <label for="users" class="label"><?php /* @escapeNotVerified */ echo __('Enterprise User') ?></label></div>
+                            <div><span><?= $customerStandard ?></span> <label for="users" class="label"><?php /* @escapeNotVerified */ echo __('Standard User') ?></label></div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </fieldset>  
+
+
+    <div class="chart-filters-box">
+
+        <div class="graph-bx">
+            <div class="innerbx">
+
+                <div class="topstrip">
+                    <form id="export_filter_form" action="<?= /* @escapeNotVerified */ $block->getUrl('safetyhubapp/dashboard/downloadrequisitionreports') ?>" method="post">
+                        <label class="label" for="frame_color">
+                            <span><?php echo __('Select Duration') ?></span>
+                        </label>
+
+                        <select name="frame_color" id="frame_color" title="<?php echo __('Select Duration: ') ?>" class="input-text" data-validate="{required:true}">
+                            <option value="Today"><?php echo __('Today') ?></option>
+                            <option value="Last 7 days"><?php echo __('Last 7 days') ?></option>
+                            <option value="Current Month"><?php echo __('Current Month') ?></option> 
+                            <option value="YTD"><?php echo __('YTD') ?></option> 
+                            <option value="2YTD"><?php echo __('2YTD') ?></option> 
+                        </select>
+
+
+                        <input name="form_key" type="hidden" value="<?= /* @escapeNotVerified */ $block->getFormKey() ?>" />
+                        <div id="export_filter_grid_container"><!-- --></div>
+
+                        <button class="action- scalable" type="submit" ><span><?php
+                                /* @escapeNotVerified */ echo __('Download Reports')
+                                ?></span></button>
+                    </form>
+                </div>
+
+                <div id="chart_div" style="width: 100%; height: 400px;"></div>
+
+            </div>
+        </div>
+
+        <div class="pi-chartbx">
+            <div class="innerbx">
+                <div class="topstrip">
+                    <form id="export_filter_form" action="<?= /* @escapeNotVerified */ $block->getUrl('safetyhubapp/dashboard/downloadreports') ?>" method="post">
+
+                        <label class="label" for="frame_color">
+                            <span><?php echo __('Filter User') ?></span>
+                        </label>
+
+                        <select name="frame_color" id="frame_color" title="<?php echo __('Filter User: ') ?>" class="input-text" data-validate="{required:true}">
+                            <option value=""><?php echo __('Total App Users') ?></option>
+                            <option value=""><?php echo __('Inactive Users') ?></option>
+                            <option value=""><?php echo __('Active Users') ?></option> 
+                        </select>
+
+
+                        <input name="form_key" type="hidden" value="<?= /* @escapeNotVerified */ $block->getFormKey() ?>" />
+                        <div id="export_filter_grid_container"><!-- --></div>
+
+                        <button class="action- scalable" type="submit" ><span><?php
+                                /* @escapeNotVerified */ echo __('Download Reports Pdf')
+                                ?></span></button>
+                    </form>
+                    <form id="export_filter_form" action="<?= /* @escapeNotVerified */ $block->getUrl('safetyhubapp/dashboard/refundedreport') ?>" method="post">
+
+                        <input name="form_key" type="hidden" value="<?= /* @escapeNotVerified */ $block->getFormKey() ?>" />
+                        <div id="export_filter_grid_container"><!-- --></div>
+
+                        <button class="action- scalable" type="submit" ><span><?php
+                                /* @escapeNotVerified */ echo __('Download Reports Excel')
+                                ?></span></button>
+                    </form>
+                </div>
+
+                <div id="piechart" style="width: 100%; height: 400px;"></div>
+
+            </div>
+        </div>
+
+
+
+    </div>
+
+
+</div>
+
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript">
+    google.charts.load('current', {'packages': ['corechart']});
+    google.charts.setOnLoadCallback(drawChart);
+
+    function drawChart() {
+
+        var data = google.visualization.arrayToDataTable([
+            ['Task', 'Hours per Day'],
+
+            ['Enterprise', <?= $customerEnterprise ?>],
+
+            ['Standard', <?= $customerStandard ?>]
+
+        ]);
+
+        var options = {
+            title: 'Total Users'
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+
+        chart.draw(data, options);
+    }
+</script>
+
+<script type="text/javascript">
+    google.charts.load('current', {'packages': ['bar']});
+    google.charts.setOnLoadCallback(drawBasic);
+
+    
+      function drawBasic() {
+        var data = google.visualization.arrayToDataTable([
+          ['Date', 'Approved', 'Rejected', 'Pending'],
+          ['02-06-2021', 20, 10, 5],
+          
+        ]);
+
+        var options = {
+          chart: {
+            title: 'Submitted Requisitions',
+            subtitle: 'Total Submitted Requisitions',
+          },
+          bars: 'verticle', // Required for Material Bar Charts.
+          hAxis: {format: 'none'},
+          height: 400,
+          colors: ['#1b9e77', '#d95f02', '#7570b3']
+        };
+        var chart = new google.charts.Bar(document.getElementById('chart_div'));
+        chart.draw(data, options);
+// 
+//      var data = new google.visualization.DataTable();
+//           data.addColumn('date', 'Season Start Date');
+//      data.addColumn('number', 'Approved');
+//      data.addColumn('number', 'Rejected');
+//      data.addColumn('number', 'Pending');
+//
+//      data.addRows([
+//        [{v: [8, 0, 0], f: new Date('06-02-2021')}, 1,2,2],
+//       
+//      ]);
+//
+//      var options = {
+//        title: 'Submitted Requisitions',
+//        hAxis: {
+//          title: 'Date',
+//          format: 'mm-dd-yyyy',
+//          viewWindow: {
+//            min: [7, 30, 0],
+//            max: [17, 30, 0]
+//          }
+//        },
+//        vAxis: {
+//          title: 'Rating (scale of 1-10)'
+//        }
+//        
+
+
+//      var chart = new google.visualization.ColumnChart(
+//        document.getElementById('chart_div'));
+//
+//      chart.draw(data, options);
+    }
+</script>

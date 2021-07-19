@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="admin-2columns-left" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <update handle="editor"/>
+    <body>
+        <referenceContainer name="content">
+            <block class="Vgroup\SafetyHubApp\Block\Adminhtml\Requisitions\Edit" name="safetyhubapp_requisitions_edit"/>
+        </referenceContainer>
+        <referenceContainer name="left">
+            <block class="Vgroup\SafetyHubApp\Block\Adminhtml\Requisitions\Edit\Tabs" name="safetyhubapp_requisitions_edit_tabs">
+                <block class="Vgroup\SafetyHubApp\Block\Adminhtml\Requisitions\Edit\Tab\Main" name="safetyhubapp_requisitions_edit_tab_main" template="Vgroup_SafetyHubApp::requisitions/requisition.phtml"/>
+<!--                <block class="Vgroup\SafetyHubApp\Block\Adminhtml\Requisitions\Edit\Tab\Customer" name="safetyhubapp_requisitions_customer_view" template="Vgroup_SafetyHubApp::requisitions/customer.phtml"/>-->
+                <block class="Vgroup\SafetyHubApp\Block\Adminhtml\Requisitions\Edit\Tab\SafetyItem" name="safetyhubapp_requisitions_safetyitem_view" template="Vgroup_SafetyHubApp::requisitions/safetyitem.phtml"/>
+				
+                <action method="addTab">
+                    <argument name="name" xsi:type="string">main_section</argument>
+                    <argument name="block" xsi:type="string">safetyhubapp_requisitions_edit_tab_main</argument>
+                </action>
+				
+<!--                <action method="addTab">
+                    <argument name="name" xsi:type="string">customer_view</argument>
+                    <argument name="block" xsi:type="string">safetyhubapp_requisitions_customer_view</argument>
+                </action>-->
+				
+                <action method="addTab">
+                    <argument name="name" xsi:type="string">safetyitem_view</argument>
+                    <argument name="block" xsi:type="string">safetyhubapp_requisitions_safetyitem_view</argument>
+                </action>
+				
+            </block>
+        </referenceContainer>
+    </body>
+</page>

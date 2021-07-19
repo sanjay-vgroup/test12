@@ -1,0 +1,97 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+// @codingStandardsIgno
+?>
+<?php
+$requisition = $block->getRequisition();
+$requisitionSafetyItem = $block->getRequisitionSafetyItem();
+$requisitionItems = $block->getRequisitionItems();
+?>
+<?php if ($requisitionSafetyItem['type'] != 0) : ?>
+    <section class="admin__page-section order-view-account-information">
+        <div class="admin__page-section-title">
+            <span class="title"><?= $block->escapeHtml(__('Safety Item Information')) ?></span>
+        </div>
+        <div class="admin__page-section-content">
+            <div class="admin__page-section-item order-information">
+                <?php /* Order Information */ ?>
+                <div class="admin__page-section-item-content">
+                    <table class="admin__table-secondary order-information-table">
+                        <tr>
+                            <th><?= $block->escapeHtml(__('Safety Item Type')) ?></th>
+                            <td><?= $block->escapeHtml($block->getSafetyItemType($requisitionSafetyItem['type'])) ?></td>
+                        </tr>
+                        <tr>
+                            <th><?= $block->escapeHtml(__('Model Number')) ?></th>
+                            <td><?= $block->escapeHtml($requisitionSafetyItem['model_number']) ?></td>
+                        </tr>
+                        <tr>
+                            <th><?= $block->escapeHtml(__('Serial Number')) ?></th>
+                            <td><?= $block->escapeHtml($requisitionSafetyItem['serial_number']) ?></td>
+                        </tr>
+                        <tr>
+                            <th><?= $block->escapeHtml(__('Nickname')) ?></th>
+                            <td><?= $block->escapeHtml($requisitionSafetyItem['nickname']) ?></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+
+        </div>
+    </section>
+<?php endif; ?>
+<?php if (count($requisitionItems) > 0): ?>
+    <section class="admin__page-section">
+        <div class="admin__page-section-title">
+            <span class="title">Requisition Items</span>
+        </div>
+        <div class="admin__table-wrapper">
+
+            <div class="admin__table-wrapper">
+                <table class="data-table admin__table-primary edit-order-table">
+                    <thead>
+                        <tr class="headings">
+                            <th class="col-sku"><span>SKU</span></th>
+                            <th class="col-sku"><span>Name</span></th>
+                            <th class="col-sku"><span>Qty</span></th>
+                            <th class="col-sku"><span>Price</span></th>
+                            <th class="col-sku"><span>Subtotal</span></th>
+                        </tr>
+                    </thead>
+                    <?php $i = 0;
+                    $subtotal = 0; 
+                            ?>
+                    <?php foreach ($requisitionItems as $requisitionItem) : 
+                        $subtotal += $requisitionItem['price'] * $requisitionItem['qty']; 
+                        ?>
+                        <tbody class="<?= /* @noEscape */ $i % 2 ? 'even' : 'odd' ?>">
+                        <td class="col-sku"><span><?= $requisitionItem['sku']; ?></span></td>
+                        <td class="col-sku"><span><?= $requisitionItem['name']; ?></span></td>
+                        <td class="col-sku"><span><?= $requisitionItem['qty']; ?></span></td>
+                        <td class="col-sku"><span><?= $requisitionItem['price']; ?></span></td>
+                        <td class="col-sku"><span><?= ($requisitionItem['price'] * $requisitionItem['qty']); ?></span></td>
+                        </tbody>
+                        <?php $i++; ?>
+                    <?php endforeach; ?>
+                    <tfoot>
+                        <tr class="headings">
+                            <td class="col-sku" colspan="4">Total</td>
+                            <td class="col-sku" >$<?= $subtotal; ?></td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+
+        </div>
+    </section>
+<?php endif; ?>
+
+
+
+
+
+

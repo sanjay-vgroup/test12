@@ -1,0 +1,273 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+/** @var \Vgroup\SafetyHubApp\Block\Account\Dashboard\Info $block */
+?>
+<div class="block block-dashboard-info">
+
+<div class="dash-top">
+
+    <div class="activity_box box-blue">
+        <div class="innerbx">
+        <i class="activity-icon">
+            <img src="https://app.firstaidonly.com/skin/frontend/fao_app/default/images/icon_requisition_db.png" alt="Requisitions">
+        </i>
+        <div class="activity-content">
+            <span class="activity_counter">0</span>
+            <div class="activity-info">
+            <span class="activity_heading">Requisition</span>
+            <span class="activity_details">placed on 01/02/2021</span>
+            </div>
+        </div>
+        </div>		
+    </div>
+
+    <div class="activity_box box-yellow">
+    <div class="innerbx">
+        <i class="activity-icon">
+            <img src="https://app.firstaidonly.com/skin/frontend/fao_app/default/images/icon_safety.png" alt="Requisitions">
+        </i>
+        <div class="activity-content">
+            <span class="activity_counter">0</span>
+            <div class="activity-info">
+            <span class="activity_heading">Safety Items</span>
+            <span class="activity_details">added on 01/02/2021</span>
+            </div>
+        </div>	
+    </div>	
+    </div>
+
+    <div class="activity_box box-green">
+    <div class="innerbx">
+        <i class="activity-icon">
+            <img src="https://app.firstaidonly.com/skin/frontend/fao_app/default/images/icon_staff.png" alt="Requisitions">
+        </i>
+        <div class="activity-content">
+            <span class="activity_counter">0</span>
+            <div class="activity-info">
+            <span class="activity_heading">Users</span>
+            <span class="activity_details">added on 01/02/2021</span>
+            </div>
+        </div>
+    </div>
+    </div>
+        
+</div>
+
+<div id="activity-lists">
+    <div class="activity_list_box">
+        <div class="innerbx">
+            <div class="activity_list_heading">Requisition by date <i>12/27/2020</i> to <i>01/02/2021</i></div>
+            <div class="activity_list_details">
+            <div id="chart_div" style="width: 620px; height: 300px"></div>
+            </div>
+        </div>
+    </div>
+    <div class="activity_list_box">
+        <div class="innerbx">
+        <div class="activity_list_heading">Recent Requisitions</div>
+        <div class="activity_list_details">
+
+
+        <table width="94%" cellspacing="0" cellpadding="3" border="0" align="center">
+                        <tbody>
+                            <tr>
+                                <th scope="col">Req#</th>
+                                <th scope="col">Created On</th>
+                                <th scope="col">Email</th>
+                                <th scope="col">Model#</th>
+                            </tr>
+                                                                                                <tr>
+                                        <td>6485</td>
+                                        <td>12/27/2020</td>
+                                        <td>Bhupendra.mehra@vgroup.net</td>
+                                        <td>24-102</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>6276</td>
+                                        <td>10/27/2020</td>
+                                        <td>atul.singh@vgroup.net</td>
+                                        <td>-</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>6275</td>
+                                        <td>10/27/2020</td>
+                                        <td>atul.singh@vgroup.net</td>
+                                        <td>90732</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>6274</td>
+                                        <td>10/27/2020</td>
+                                        <td>atul.singh@vgroup.net</td>
+                                        <td>90732</td>
+                                    </tr>
+                                                                                    </tbody>
+                    </table>
+                    <a href="https://app.firstaidonly.com/appcustomer/account/requisitions/" title="See Details">See Details</a>
+                
+        </div>
+        </div>
+    </div>
+    <div class="activity_list_box">
+        <div class="innerbx">
+        <div class="activity_list_heading">Recently added Safety Items</div>
+        <div class="activity_list_details">
+
+
+        <table width="94%" cellspacing="0" cellpadding="3" border="0" align="center">
+                        <tbody>
+                            <tr>
+                                <th scope="col">Type</th>
+                                <th scope="col">Created On</th>
+                                <th scope="col">Email</th>
+                                <th scope="col">Model#</th>
+                            </tr>
+                                                                                                <tr>
+                                        <td>Cabinet</td>
+                                        <td>10/28/2020</td>
+                                        <td>sandeep.chandel@vgroup.net</td>
+                                        <td>
+                                            90732                                        </td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>Cabinet</td>
+                                        <td>05/01/2020</td>
+                                        <td>Dhananjay.jadhav@vgroup.net</td>
+                                        <td>
+                                            90832                                        </td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>Cabinet</td>
+                                        <td>05/01/2020</td>
+                                        <td>atul.singh@vgroup.net</td>
+                                        <td>
+                                            90732                                        </td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>Cabinet</td>
+                                        <td>05/01/2020</td>
+                                        <td>Dhananjay.jadhav@vgroup.net</td>
+                                        <td>
+                                            6135                                        </td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>Cabinet</td>
+                                        <td>04/03/2020</td>
+                                        <td>bhupendra.mehra@vgroup.net</td>
+                                        <td>
+                                            746004                                        </td>
+                                    </tr>
+                                                                                </tbody></table>
+                    <a href="https://app.firstaidonly.com/appcustomer/manage/cabinet/" title="See Details">See Details</a>
+                
+        </div>
+        </div>
+    </div>
+    <div class="activity_list_box">
+        <div class="innerbx">
+        <div class="activity_list_heading">Top Re-ordered Items</div>
+        <div class="activity_list_details">
+
+
+        <table width="94%" cellspacing="0" cellpadding="3" border="0" align="center">
+                        <tbody>
+                            <tr>
+                                <th scope="col">SKU#</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">Qty.</th>
+                            </tr>
+                                                                                                <tr>
+                                        <td>FAE-4002</td>
+                                        <td>SmartCompliance Refill BZK Antiseptic Wipes, 10 Pe...</td>
+                                        <td>1942</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>FAE-3010</td>
+                                        <td>SmartCompliance Refill 1"x3" Blue Metal Detectable...</td>
+                                        <td>1552</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>FAE-7021</td>
+                                        <td>SmartCompliance Refill Antibiotic Ointment, 10 Per...</td>
+                                        <td>1353</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>FAE-4001</td>
+                                        <td>SmartCompliance Refill Alcohol Wipes, 20 Per Box...</td>
+                                        <td>1123</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>FAE-3001</td>
+                                        <td>SmartCompliance Refill 1"x3" Fabric Bandages, 25 P...</td>
+                                        <td>1033</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>FAE-7014</td>
+                                        <td>SmartCompliance Refill Ibuprofen, 10 Individual Pa...</td>
+                                        <td>992</td>
+                                    </tr>
+                                                                                    </tbody>
+                    </table>
+                    <!--                    <a href="#" title="See Details">See Details</a>-->
+                
+        </div>
+        </div>
+    </div>        
+</div>
+
+
+</div>
+
+<script type="text/javascript">
+
+(function  () {
+    require(["jquery","owlcarousel"],function($) {
+
+
+        
+        google.charts.load('current', {packages: ['corechart', 'line']});
+google.charts.setOnLoadCallback(drawBackgroundColor);
+
+function drawBackgroundColor() {
+      var data = new google.visualization.DataTable();
+      data.addColumn('number', 'X');
+      data.addColumn('number', 'Date');
+
+      data.addRows([
+        [0, 0],   [1, 10],  [2, 23],  [3, 17],  [4, 18],  [5, 9],
+        [6, 11],  [7, 27],  [8, 33],  [9, 40],  [10, 32], [11, 35],
+        [12, 30], [13, 40], [14, 42], [15, 47], [16, 44], [17, 48],
+        [18, 52], [19, 54], [20, 42], [21, 55], [22, 56], [23, 57],
+        [24, 60], [25, 50], [26, 52], [27, 51], [28, 49], [29, 53],
+        [30, 55], [31, 60], [32, 61], [33, 59], [34, 62], [35, 65],
+        [36, 62], [37, 58], [38, 55], [39, 61], [40, 64], [41, 65],
+        [42, 63], [43, 66], [44, 67], [45, 69], [46, 69], [47, 70],
+        [48, 72], [49, 68], [50, 66], [51, 65], [52, 67], [53, 70],
+        [54, 71], [55, 72], [56, 73], [57, 75], [58, 70], [59, 68],
+        [60, 64], [61, 60], [62, 65], [63, 67], [64, 68], [65, 69],
+        [66, 70], [67, 72], [68, 75], [69, 80]
+      ]);
+
+      var options = {
+        hAxis: {
+          title: ''
+        },
+        vAxis: {
+          title: ''
+        },
+        backgroundColor: '#fff'
+      };
+
+      var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
+      chart.draw(data, options);
+    }
+
+
+
+
+    });    
+})();
+    </script>
+

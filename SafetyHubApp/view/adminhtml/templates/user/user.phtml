@@ -1,0 +1,128 @@
+
+<div class="field subject required">
+                 <label class="label" for="firstname"><span><?php /* @escapeNotVerified */ echo __('First Name') ?></span></label>
+                 <div class="control">
+	                  <input name="firstname" id="firstname" title="<?php /* @escapeNotVerified */ echo __('First Name') ?>" value="" class="input-text" type="text" data-validate="{required:true}"/>
+	             </div>
+            </div>
+
+<div class="field subject required">
+                 <label class="label" for="lastname"><span><?php /* @escapeNotVerified */ echo __('Last Name') ?></span></label>
+                 <div class="control">
+	                  <input name="lastname" id="lastname" title="<?php /* @escapeNotVerified */ echo __('Last Name') ?>" value="" class="input-text" type="text" data-validate="{required:true}"/>
+	             </div>
+            </div>
+
+
+<div class="field subject required">
+                 <label class="label" for="user_email"><span><?php /* @escapeNotVerified */ echo __('User Email') ?></span></label>
+                 <div class="control">
+	                  <input name="user_email" id="user_email" title="<?php /* @escapeNotVerified */ echo __('User Email') ?>" value="" class="input-text" type="text" data-validate="{required:true}"/>
+	             </div>
+      </div>
+
+
+<div class="field subject required">
+                 <label class="label" for="password"><span><?php /* @escapeNotVerified */ echo __('Password') ?></span></label>
+                 <div class="control">
+	                  <input name="password" id="password" title="<?php /* @escapeNotVerified */ echo __('Password') ?>" value="" class="input-text" type="text" data-validate="{required:true}"/>
+	             </div>
+      </div>
+
+<div class="field subject required">
+                 <label class="label" for="con_password"><span><?php /* @escapeNotVerified */ echo __('Confirm Password') ?></span></label>
+                 <div class="control">
+	                  <input name="con_password" id="con_password" title="<?php /* @escapeNotVerified */ echo __('Confirm Password') ?>" value="" class="input-text" type="text" data-validate="{required:true}"/>
+	             </div>
+      </div>
+
+<div class="field subject">
+                 <label class="label" for="no_of_employees"><span><?php /* @escapeNotVerified */ echo __('No Of Emplyees') ?></span></label>
+                 <div class="control">
+	                  <input name="no_of_employees" id="no_of_employees" title="<?php /* @escapeNotVerified */ echo __('No Of Emplyees') ?>" value="" class="input-text" type="text" />
+	             </div>
+      </div>
+<div class="field subject">
+                 <label class="label" for="job_title"><span><?php /* @escapeNotVerified */ echo __('Job title') ?></span></label>
+                 <div class="control">
+	                  <input name="job_title" id="job_title" title="<?php /* @escapeNotVerified */ echo __('Job title') ?>" value="" class="input-text" type="text" />
+	             </div>
+      </div>
+
+
+<div class="field subject">
+                 <label class="label" for="requisitions_email_address"><span><?php /* @escapeNotVerified */ echo __('Requisitions Email Address') ?></span></label>
+                 <div class="control">
+	                  <input name="requisitions_email_address" id="requisitions_email_address" title="<?php /* @escapeNotVerified */ echo __('Requisitions Email Address') ?>" value="" class="input-text" type="text"/>
+	             </div>
+      </div>
+
+
+<div class="field subject required">
+                 <label class="label" for="company_name"><span><?php /* @escapeNotVerified */ echo __('Company name') ?></span></label>
+                 <div class="control">
+	                  <input name="company_name" id="company_name" title="<?php /* @escapeNotVerified */ echo __('Company name') ?>" value="" class="input-text" type="text" data-validate="{required:true}"/>
+	             </div>
+      </div>
+
+<div class="field subject required">
+                 <label class="label" for="add1"><span><?php /* @escapeNotVerified */ echo __('Address1') ?></span></label>
+                 <div class="control">
+	                  <input name="add1" id="add1" title="<?php /* @escapeNotVerified */ echo __('Address1') ?>" value="" class="input-text" type="text" data-validate="{required:true}"/>
+	             </div>
+      </div>
+
+<div class="field subject">
+                 <label class="label" for="add2"><span><?php /* @escapeNotVerified */ echo __('Address2') ?></span></label>
+                 <div class="control">
+	                  <input name="add2" id="add2" title="<?php /* @escapeNotVerified */ echo __('Address2') ?>" value="" class="input-text" type="text"/>
+	             </div>
+      </div>
+
+<div class="field subject required">
+                 <label class="label" for="city"><span><?php /* @escapeNotVerified */ echo __('City') ?></span></label>
+                 <div class="control">
+	                  <input name="city" id="city" title="<?php /* @escapeNotVerified */ echo __('City') ?>" value="" class="input-text" type="text" data-validate="{required:true}"/>
+	             </div>
+      </div>
+
+<div class="field telephone">
+    <label class="label" for="state"><span><?= $block->escapeHtml(__('State')) ?></span></label>
+    <div class="control">
+	<select id="state" name="state" title="<?= $block->escapeHtmlAttr(__('State')) ?>" class="select" data-validate="{required:true}">
+	    <option value=""><?= $block->escapeHtml(__('Please select region, state or province')) ?></option>
+	    <?php
+	    foreach ($block->getStates() as $i => $username) {
+		$items = $username['name'];
+		?>
+    	    <option value="<?php echo $username['name']; ?>"><?php echo $username['name']; ?></option>
+	    <?php } ?>
+	</select>   
+    </div>
+</div>
+<div class="field subject required">
+                 <label class="label" for="zipcode"><span><?php /* @escapeNotVerified */ echo __('Zipcode') ?></span></label>
+                 <div class="control">
+	                  <input name="zipcode" id="zipcode" title="<?php /* @escapeNotVerified */ echo __('Zipcode') ?>" value="" class="input-text" type="text" data-validate="{required:true}"/>
+	             </div>
+      </div>
+<div class="field subject required">
+                 <label class="label" for="telephone"><span><?php /* @escapeNotVerified */ echo __('Telephone') ?></span></label>
+                 <div class="control">
+	                  <input name="telephone" id="telephone" title="<?php /* @escapeNotVerified */ echo __('Telephone') ?>" value="" class="input-text" type="text" data-validate="{required:true}"/>
+	             </div>
+      </div>
+
+
+
+<div class="field telephone">
+    <label class="label" for="status"><span><?= $block->escapeHtml(__('Status')) ?></span></label>
+    <div class="control">
+	<select id="status" name="status" title="<?= $block->escapeHtmlAttr(__('Status')) ?>" class="select" data-validate="{required:true}">
+	    <option value="1">Enable</option>
+	    <option value="2">Disable</option>
+
+
+	</select>   
+    </div>
+</div>

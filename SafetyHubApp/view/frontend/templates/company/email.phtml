@@ -1,0 +1,104 @@
+<?php
+    $company = $block->getCompany()->getData();
+?>
+<form class="form contact" name="myform"
+      action="<?= $block->getUrl('safetyhubapp/company/emailsave'); ?>"
+      id="contact-form"
+      method="post"
+      data-hasrequired="<?php /* @escapeNotVerified */ echo __('* Required Fields') ?>"
+      data-mage-init='{"validation":{}}' enctype ='multipart/form-data'>
+    <input name="id" id="id" title="<?php /* @escapeNotVerified */ echo __('Company Id') ?>"  value="2"  class="input-text" type="hidden"/>
+     
+      <h2>Welcome Email Template</h2>
+     
+    <fieldset class="fieldset">     
+
+        <div class=" field email_template_subject required">
+
+            <label class="label" for="email_template_subject"><span><?php /* @escapeNotVerified */ echo __('Template Subject') ?></span></label>
+            <div class="control">
+                <input name="email_template_subject" id="email_template_subject" title="<?php /* @escapeNotVerified */ echo __('Template Subject') ?>"  value="<?=  $company['email_template_subject']; ?>"  class="input-text" type="text" data-validate="{required:true}"/>
+            </div>
+        </div>
+        <div class="field email_template_content required">
+            <label class="label" for="email_template_content"><span><?= $block->escapeHtml(__('Template Content')) ?></span></label>
+            <div class="control">
+                <textarea cols="8" rows="8" name="email_template_content" id="email_template_content" title="<?= $block->escapeHtmlAttr(__('Template Content')) ?>" value=""  class="admin__control-wysiwig" data-bind="html: content" data-validate="{required:true}"/><?=  $company['email_template_content']; ?></textarea>
+
+            </div>
+        </div>
+
+        <div class="field email_template_style required">
+            <label class="label" for="email_template_style"><span><?= $block->escapeHtml(__('Template Style')) ?></span></label>
+            <div class="control">
+                <textarea cols="8" rows="8" name="email_template_style" id="email_template_style" title="<?= $block->escapeHtmlAttr(__('Template Style')) ?>" value="" placeholder="font-size:13px;color:#000000" class="input-text" /><?=  $company['email_template_style']; ?></textarea>
+            </div>
+        </div>                     
+    </fieldset>
+    <div class="actions-toolbar">
+         
+        <div class="primary">
+
+            <button type="submit" title="<?= $block->escapeHtmlAttr(__('Save')) ?>" class="action submit primary">
+                <span><?= $block->escapeHtml(__('Save')) ?></span>
+            </button>
+            <button type="button" title="<?= $block->escapeHtmlAttr(__('Send')) ?>" class="action submit primary">
+                <span><?= $block->escapeHtml(__('Send')) ?></span>
+            </button>
+             <button type="button" id="click-me" title="<?= $block->escapeHtmlAttr(__('Send Test Mail')) ?>" class="action submit primary">
+                <span><?= $block->escapeHtml(__('Send Test Mail')) ?></span>
+            </button>
+          
+            <a  type="button"  href="<?= $block->getUrl('safetyhubapp/company/preview'); ?>" title="<?= $block->escapeHtmlAttr(__('Preview')) ?>" class="action submit primary">
+                <span><?= $block->escapeHtml(__('Preview')) ?></span>
+            </a>
+             
+
+             
+        </div>
+    </div>
+</form>
+<div id="popup-mpdal" >
+    <?php  include ($block->getTemplateFile('Vgroup_SafetyHubApp::company/sendemail.phtml')) ?>
+</div>
+
+<script>
+    require(
+        [
+            'jquery',
+            'Magento_Ui/js/modal/modal'
+        ],
+        function(
+            $,
+            modal
+        ) {
+            var options = {
+                type: 'popup',
+                responsive: true,
+                innerScroll: true,
+               
+            };
+
+            var popup = modal(options, $('#popup-mpdal'));
+            $("#click-me").on('click',function(){
+                $("#popup-mpdal").modal("openModal");
+            });
+
+        }
+    );
+</script>
+<script type="text/javascript">
+require([
+    'jquery',
+    'mage/adminhtml/wysiwyg/tiny_mce/setup'
+], function(jQuery){
+    wysiwyg = new wysiwygSetup('email_template_content', {
+        'width':'100%',  // defined width of editor
+        'height':'300px', // height of editor
+        'plugins':[{'name':'image'}], // for image
+        'tinymce4':{'toolbar':'formatselect | bold italic underline | alignleft aligncenter alignright | bullist numlist | link table charmap','plugins':'advlist autolink lists link charmap media noneditable table contextmenu paste code help table'
+        }
+    });
+    wysiwyg.setup('exact');
+});
+</script>

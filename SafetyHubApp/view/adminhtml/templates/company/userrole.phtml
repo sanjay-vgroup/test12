@@ -1,0 +1,53 @@
+<?php
+$companyData = $block->getCompanyData();
+$permission = ($companyData && $companyData['permissions']!='') ? explode(',', $companyData['permissions']) : [];
+
+?>
+<fieldset class="fieldset form-inline entry-edit">
+    <legend class="legend">
+        <span><?= /* @escapeNotVerified */ __('Roles Resources') ?></span>
+    </legend><br />
+
+    <div class="field">
+        <label class="label" for="all"><span><?= /* @escapeNotVerified */ __('Resource Access') ?></span></label>
+
+        <div class="control">
+            <select id="permission_type" name="permission_type" onchange="jQuery('[data-role=tree-resources-container]').toggle()" class="select">
+                <option value="1" <?php ($companyData && $companyData['permission_type']=='1') ? 'selected' : '' ?>><?= /* @escapeNotVerified */ __('Custom') ?></option>
+                <option value="2" <?php ($companyData && $companyData['permission_type']=='2') ? 'selected' : '' ?>><?= /* @escapeNotVerified */ __('Admin') ?></option>
+            </select>
+        </div>
+    </div>
+
+    <div class="field " data-role="tree-resources-container">
+        <label class="label"><span><?= /* @escapeNotVerified */ __('Resources') ?></span></label>
+        <div class="control">
+            <div class="tree x-tree jstree jstree-0 jstree-focused jstree-default">
+		<ul class="jstree-no-dots">
+                    <li><input type="checkbox"  id="resource[]" name="resource[]" value="1" <?php if(in_array('1', $permission)) { echo 'checked'; } ?>>Manage Requisitions</li>
+		    <li><input type="checkbox"  id="resource[]" name="resource[]" value="2" <?php if(in_array('2', $permission)) { echo 'checked'; } ?>>Manage Safety Items</li>
+		    <li><input type="checkbox"  id="resource[]" name="resource[]" value="3" <?php if(in_array('3', $permission)) { echo 'checked'; } ?>>Manage Staff</li>
+		    <li>
+			<input type="checkbox"  id="resource[]" name="resource[]" value="4" <?php if(in_array('4', $permission)) { echo 'checked'; } ?>>Reports
+			<ul>
+			    <li>&nbsp;&nbsp;Requisition Reports </li>
+			    <li>&nbsp;&nbsp;Physical Inventory Check Reports</li>
+			    <li>&nbsp;&nbsp;Inventory Checked Ok Report</li>   
+			</ul>
+		    </li>
+		    <li>
+			<input type="checkbox"  id="resource[]" name="resource[]" value="5" <?php if(in_array('15', $permission)) { echo 'checked'; } ?>>Personalization
+			<ul>
+			    <li>&nbsp;&nbsp; Manage Company Labels </li>
+			    <li>&nbsp;&nbsp;Welcome Email Template</li>
+			</ul>
+		    </li>
+		    <li><input type="checkbox"  id="resource[]" name="resource[]" value="10" <?php if(in_array('10', $permission)) { echo 'checked'; } ?>>Requisition Approval</li>
+		</ul>
+
+	    </div>
+	</div>
+    </div>
+</fieldset>
+
+

@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="admin-2columns-left" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <update handle="editor"/>
+    <body>
+        <referenceContainer name="content">
+            <block class="Vgroup\SafetyHubApp\Block\Adminhtml\Users\Edit" name="safetyhubapp_users_edit"/>
+        </referenceContainer>
+        <referenceContainer name="left">
+            <block class="Vgroup\SafetyHubApp\Block\Adminhtml\Users\Edit\Tabs" name="safetyhubapp_users_edit_tabs">
+                <block class="Vgroup\SafetyHubApp\Block\Adminhtml\Users\Edit\Tab\Main" name="safetyhubapp_users_edit_tab_main" template="Vgroup_SafetyHubApp::users/user.phtml"/>
+                <block class="Vgroup\SafetyHubApp\Block\Adminhtml\Users\Edit\Tab\PartNumbers" name="safetyhubapp_item_users_partnumbers"/>
+               		
+                <action method="addTab">
+                    <argument name="name" xsi:type="string">main_section</argument>
+                    <argument name="block" xsi:type="string">safetyhubapp_users_edit_tab_main</argument>
+                </action>		
+               <action method="addTab">
+                    <argument name="name" xsi:type="string">users_partnumbers</argument>
+                    <argument name="block" xsi:type="array">
+                        <item name="label" xsi:type="string">SafetyItem info</item>
+                        <item name="title" xsi:type="string">SafetyItem info</item>
+                        <item name="url" xsi:type="helper" helper="Vgroup\SafetyHubApp\Helper\Data::getUsersGridUrl"></item>
+                        <item name="class" xsi:type="string">ajax</item>
+                    </argument>
+                </action>
+                
+		</block>
+                
+        </referenceContainer>
+    </body>
+</page>

@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Api/etc/extension_attributes.xsd">
+    <extension_attributes for="Magento\Customer\Api\Data\CustomerInterface">
+        <attribute code="company_id"  type="int" />
+        <attribute code="access_code"  type="string" />
+        <attribute code="is_profile_complete"  type="boolean" />
+        <attribute code="response" type="Vgroup\SafetyHubApp\Api\Data\ResultInterface" />
+        <attribute code="safety_users_items" type="Vgroup\SafetyHubApp\Api\Data\SafetyUsersItemsInterface" />
+    </extension_attributes>
+</config>

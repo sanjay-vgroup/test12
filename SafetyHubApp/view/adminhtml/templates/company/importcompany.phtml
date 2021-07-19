@@ -1,0 +1,45 @@
+<?php
+$companies = $block->getCompanies();
+//echo count($companies);
+?>
+<div class="csv-layout">
+<h2>Import Company Part Numbers</h2>
+
+<form class="myformdynamic" onsubmit="return Validate()" method="post" action="<?php echo $block->getUrl('*/*/importcsv/') ?>"  enctype="multipart/form-data">
+
+<input name="form_key" type="hidden" value="<?php echo $block->getFormKey() ?>"> 
+ 
+<div class="field name required">
+    <label class="label" for="phone"><span><?= $block->escapeHtml(__('Companies')) ?></span></label>
+
+        <select name="row_id" id="row_id">
+            <?php foreach($companies as $company) { ?>
+            <option value="<?= $company['entity_id'] ?>"><?= $company['name'] ?></option>
+            <?php } ?>
+        </select>
+ 
+</div>
+
+<div class="field name required">
+    <label class="label" for="phone"><span><?= $block->escapeHtml(__('Skip Line')) ?></span></label>
+   
+        <input name="skip_line" id="skip_line" title="Skip Line" value="1" class="input-text" type="checkbox" />
+
+</div>   
+<div class="field name required">
+    <label class="label" for="phone"><span><?= $block->escapeHtml(__('CSV')) ?></span></label>
+   
+        <input name="csv_file" id="csv_file" title="CSV File" value="" class="input-text" type="file" />
+
+</div>
+    
+<div class="field name required">
+    <label class="label" for="phone"><span><?= $block->escapeHtml(__('Download Sample File')) ?></span></label>
+    
+        <a href="<?= $block->getUrl().'/pub/media/demo/company_part_numbers_sample.csv' ?>" download>Click To Download</a>
+ 
+</div>
+   
+<button class="c-btn" type="submit" name="save" value="Save">Save</button>
+</form>
+</div>

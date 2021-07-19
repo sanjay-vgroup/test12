@@ -1,0 +1,121 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="2columns-left" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd" label="Customer My Account (All Pages)" design_abstraction="custom">
+    <update handle="safetyhubapp"/>
+    <head>
+        <title>My Account</title>
+    </head>
+    <body>
+        <attribute name="class" value="account"/>
+        <referenceContainer name="sidebar.main">
+            <block class="Magento\Framework\View\Element\Template" name="sidebar.main.account_nav" template="Magento_Theme::html/collapsible.phtml" before="-">
+                <arguments>
+                    <argument name="block_css" xsi:type="string">account-nav</argument>
+                </arguments>
+                <block class="Magento\Customer\Block\Account\Navigation" name="customer_account_navigation" before="-">
+                    <arguments>
+                        <argument name="css_class" xsi:type="string">nav items</argument>
+                    </arguments>
+                    <block class="Magento\Customer\Block\Account\SortLinkInterface" name="safetyhubapp-account-navigation-link">
+                        <arguments>
+                            <argument name="label" xsi:type="string" translate="true">Dashboard</argument>
+                            <argument name="path" xsi:type="string">safetyhubapp/account/dashboard</argument>
+                            <argument name="sortOrder" xsi:type="number">250</argument>
+                        </arguments>
+                    </block>
+                    <block class="Magento\Customer\Block\Account\Delimiter" name="customer-account-navigation-delimiter-1" template="Magento_Customer::account/navigation-delimiter.phtml">
+                        <arguments>
+                            <argument name="sortOrder" xsi:type="number">200</argument>
+                        </arguments>
+                    </block>
+                    <block class="Magento\Customer\Block\Account\SortLinkInterface" name="customer-account-navigation-requisition-link">
+                        <arguments>
+                            <argument name="label" xsi:type="string" translate="true">Manage Requisitions</argument>
+                            <argument name="path" xsi:type="string">safetyhubapp/account/requisitions</argument>
+                            <argument name="sortOrder" xsi:type="number">190</argument>
+                        </arguments>
+                    </block>
+                    <block class="Magento\Customer\Block\Account\SortLinkInterface" name="safetyhubapp-account-navigation-safity-link">
+                        <arguments>
+                            <argument name="label" xsi:type="string" translate="true">Manage Safety Items</argument>
+                            <argument name="path" xsi:type="string">safetyhubapp/account/safetyitems</argument>
+                            <argument name="sortOrder" xsi:type="number">180</argument>
+                        </arguments>
+                    </block>
+                    <block class="Magento\Customer\Block\Account\SortLinkInterface" name="safetyhubapp-account-navigation-staff-link">
+                        <arguments>
+                            <argument name="label" xsi:type="string" translate="true">Manage Staff</argument>
+                            <argument name="path" xsi:type="string">safetyhubapp/account/users</argument>
+                            <argument name="sortOrder" xsi:type="number">170</argument>
+                        </arguments>
+                    </block>
+                    
+                    <block class="Magento\Customer\Block\Account\SortLinkInterface" name="safetyhubapp-account-navigation-reports-link">
+                        <arguments>
+                            <argument name="label" xsi:type="string" translate="true">Reports</argument>
+                            <argument name="path" xsi:type="string">safetyhubapp/staff/</argument>
+                            <argument name="sortOrder" xsi:type="number">160</argument>
+                        </arguments>
+                    </block>
+                    <block class="Magento\Customer\Block\Account\SortLinkInterface" name="safetyhubapp-account-navigation-requisition-report-link">
+                        <arguments>
+                            <argument name="label" xsi:type="string" translate="true">Schedule Requisition Reports</argument>
+                            <argument name="path" xsi:type="string">safetyhubapp/staff/</argument>
+                            <argument name="sortOrder" xsi:type="number">150</argument>
+                        </arguments>
+                    </block>                    
+                    <block class="Magento\Customer\Block\Account\SortLinkInterface" name="safetyhubapp-account-navigation-physical-inventory-link">
+                        <arguments>
+                            <argument name="label" xsi:type="string" translate="true">Physical Inventory Check Reports</argument>
+                            <argument name="path" xsi:type="string">safetyhubapp/staff/</argument>
+                            <argument name="sortOrder" xsi:type="number">140</argument>
+                        </arguments>
+                    </block>
+                    
+                    <block class="Magento\Customer\Block\Account\SortLinkInterface" name="safetyhubapp-account-navigation-inventory-check-link">
+                        <arguments>
+                            <argument name="label" xsi:type="string" translate="true">Inventory Checked Ok Report</argument>
+                            <argument name="path" xsi:type="string">safetyhubapp/staff/</argument>
+                            <argument name="sortOrder" xsi:type="number">130</argument>
+                        </arguments>
+                    </block>
+                    
+                    <block class="Magento\Customer\Block\Account\SortLinkInterface" name="safetyhubapp-account-navigation-personalization-link">
+                        <arguments>
+                            <argument name="label" xsi:type="string" translate="true">Personalization</argument>
+                            <argument name="path" xsi:type="string">safetyhubapp/account/company</argument>
+                            <argument name="sortOrder" xsi:type="number">120</argument>
+                        </arguments>
+                    </block>
+                    
+                    
+                    <block class="Magento\Customer\Block\Account\SortLinkInterface" name="safetyhubapp-account-navigation-company-link">
+                        <arguments>
+                            <argument name="label" xsi:type="string" translate="true">Manage Company Labels</argument>
+                            <argument name="path" xsi:type="string">safetyhubapp/staff/</argument>
+                            <argument name="sortOrder" xsi:type="number">110</argument>
+                        </arguments>
+                    </block>
+                    
+                    <block class="Magento\Customer\Block\Account\SortLinkInterface" name="safetyhubapp-account-navigation-welcome-email-link">
+                        <arguments>
+                            <argument name="label" xsi:type="string" translate="true">Welcome Email Template</argument>
+                            <argument name="path" xsi:type="string">safetyhubapp/staff/</argument>
+                            <argument name="sortOrder" xsi:type="number">100</argument>
+                        </arguments>
+                    </block>
+                    <block class="Magento\Customer\Block\Account\Delimiter" name="customer-account-navigation-delimiter-2" template="Magento_Customer::account/navigation-delimiter.phtml">
+                        <arguments>
+                            <argument name="sortOrder" xsi:type="number">80</argument>
+                        </arguments>
+                    </block>
+                </block>
+            </block>
+        </referenceContainer>
+    </body>
+</page>

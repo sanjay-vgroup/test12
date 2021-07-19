@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="2columns-left" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <update handle="safetyhubapp_account"/>
+    <update handle="formkey"/>
+    <body>
+        <referenceBlock name="page.main.title">
+            <action method="setPageTitle">
+                <argument translate="true" name="title" xsi:type="string">Add Safety Items</argument>
+            </action>
+        </referenceBlock>
+         
+        <referenceContainer name="content">
+            <block class="Vgroup\SafetyHubApp\Block\SafetyItems\Add" name="customer_add" template="Vgroup_SafetyHubApp::safetyitems/form.phtml" cacheable="false">
+                <container name="form.additional.info" as="form_additional_info"/>
+            </block>
+          
+        </referenceContainer>
+    </body>
+</page>

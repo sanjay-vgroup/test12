@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="2columns-left" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="Vgroup_SafetyHubApp::css/owl.carousel.min.css"/>
+        <script src="Vgroup_SafetyHubApp::js/prototype.js" />
+        <script src="Vgroup_SafetyHubApp::js/validation.js" />
+        <script src="Vgroup_SafetyHubApp::js/Personalization.js" />
+        <script src="Vgroup_SafetyHubApp::js/model-popup.js" async="async"/>
+        <script src="Vgroup_SafetyHubApp::js/owl.carousel.min.js" async="async" />
+        <script src="Vgroup_SafetyHubApp::js/personalization-preview.js" async="async" />
+        
+    </head>
+
+    <update handle="safetyhubapp_account"/>
+    <update handle="formkey"/>
+    <body>
+        <referenceBlock name="page.main.title">
+            <action method="setPageTitle">
+                <argument translate="true" name="title" xsi:type="string">Personalization</argument>
+            </action>
+        </referenceBlock>
+        <referenceContainer name="content">
+            <block class="Vgroup\SafetyHubApp\Block\Company\Edit" name="customer_company" template="Vgroup_SafetyHubApp::company/company.phtml" cacheable="false">
+                <container name="form.additional.info" as="form_additional_info"/>
+            </block>
+        </referenceContainer>
+    </body>
+   
+</page>

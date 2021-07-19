@@ -1,0 +1,194 @@
+<?php
+
+/**
+ * VgroupSafetyHubApp
+ * 
+ * @author Vgroup
+ */
+
+namespace Vgroup\SafetyHubApp\Setup;
+
+use Magento\Customer\Setup\CustomerSetupFactory;
+use Magento\Customer\Model\Customer;
+use Magento\Eav\Model\Entity\Attribute\Set as AttributeSet;
+use Magento\Eav\Model\Entity\Attribute\SetFactory as AttributeSetFactory;
+use Magento\Framework\Setup\InstallDataInterface;
+use Magento\Framework\Setup\ModuleContextInterface;
+use Magento\Framework\Setup\ModuleDataSetupInterface;
+use Magento\Eav\Model\Config;
+
+class InstallData implements InstallDataInterface {
+
+    /**
+     * @var \Magento\Eav\Model\Config
+     */
+    private $_eavConfig;
+
+    /**
+     * @param \Magento\Eav\Model\Config $eavConfig
+     */
+
+    /**
+     * @var CustomerSetupFactory
+     */
+    protected $customerSetupFactory;
+
+    /**
+     * @var AttributeSetFactory
+     */
+    private $attributeSetFactory;
+
+    /**
+     * @param CustomerSetupFactory $customerSetupFactory
+     * @param AttributeSetFactory $attributeSetFactory
+     */
+    public function __construct(
+	    CustomerSetupFactory $customerSetupFactory,
+	    AttributeSetFactory $attributeSetFactory,
+	    Config $eavConfig
+    ) {
+	$this->customerSetupFactory = $customerSetupFactory;
+	$this->attributeSetFactory = $attributeSetFactory;
+	$this->_eavConfig = $eavConfig;
+    }
+
+    public function install(ModuleDataSetupInterface $setup, ModuleContextInterface $context) {
+	/* customersetupfactory instead of eavsetupfactory */
+	$customerSetup = $this->customerSetupFactory->create(['setup' => $setup]);
+	$customerEntity = $customerSetup->getEavConfig()->getEntityType('customer');
+	$attributeSetId = $customerEntity->getDefaultAttributeSetId();
+	/** @var $attributeSet AttributeSet */
+	$attributeSet = $this->attributeSetFactory->create();
+	$attributeGroupId = $attributeSet->getDefaultGroupId($attributeSetId);
+	/* create customer phone number attribute */
+	$noOfEmpolyees = $this->_eavConfig->getAttribute(Customer::ENTITY, 'number_of_employees');
+	//return ($attr && $attr->getId()) ? true : false;
+	if (!$noOfEmpolyees->getId()) {
+	    $customerSetup->addAttribute(Customer::ENTITY, 'number_of_employees', [
+		'type' => 'varchar', // attribute with varchar type
+		'label' => 'Number of Employees',
+		'input' => 'text', // attribute input field is text
+		'required' => false, // field is not required
+		'visible' => true,
+		'user_defined' => true,
+		'position' => 999,
+		'sort_order' => 0,
+		'system' => 0,
+		'is_used_in_grid' => 0, //setting grid options
+		'is_visible_in_grid' => 0,
+		'is_filterable_in_grid' => 0,
+		'is_searchable_in_grid' => 0,
+		    ]
+	    );
+
+	    $noOfEmpolyeesAttribute = $customerSetup->getEavConfig()->getAttribute(Customer::ENTITY, 'number_of_employees')
+		    ->addData(
+		    [
+			'attribute_set_id' => $attributeSetId,
+			'attribute_group_id' => $attributeGroupId
+		    ]
+// more used_in_forms ['adminhtml_checkout','adminhtml_customer','adminhtml_customer_address','customer_account_edit','customer_address_edit','customer_register_address']
+	    );
+	    $noOfEmpolyeesAttribute->save();
+	}
+
+	$jobTitle = $this->_eavConfig->getAttribute(Customer::ENTITY, 'job_title');
+
+	if (!$jobTitle->getId()) {
+	    $customerSetup->addAttribute(Customer::ENTITY, 'job_title', [
+		'type' => 'varchar', // attribute with varchar type
+		'label' => 'Job Title',
+		'input' => 'text', // attribute input field is text
+		'required' => false, // field is not required
+		'visible' => true,
+		'user_defined' => true,
+		'position' => 1000,
+		'sort_order' => 0,
+		'system' => 0,
+		'is_used_in_grid' => 0, //setting grid options
+		'is_visible_in_grid' => 0,
+		'is_filterable_in_grid' => 0,
+		'is_searchable_in_grid' => 0,
+		    ]
+	    );
+
+	    $jobTitleAttribute = $customerSetup->getEavConfig()->getAttribute(Customer::ENTITY, 'job_title')
+		    ->addData(
+		    [
+			'attribute_set_id' => $attributeSetId,
+			'attribute_group_id' => $attributeGroupId
+		    ]
+// more used_in_forms ['adminhtml_checkout','adminhtml_customer','adminhtml_customer_address','customer_account_edit','customer_address_edit','customer_register_address']
+	    );
+	    $jobTitleAttribute->save();
+	}
+
+	$company = $this->_eavConfig->getAttribute(Customer::ENTITY, 'company_id');
+
+	if (!$company->getId()) {
+
+	    $customerSetup->addAttribute(Customer::ENTITY, 'company_id', [
+		'type' => 'int', // attribute with varchar type
+		'label' => 'company_id',
+		'input' => 'text', // attribute input field is text
+		'required' => false, // field is not required
+		'visible' => true,
+		'user_defined' => true,
+		'position' => 1001,
+		'sort_order' => 0,
+		'system' => 0,
+		'default' => 0,
+		'is_used_in_grid' => 0, //setting grid options
+		'is_visible_in_grid' => 0,
+		'is_filterable_in_grid' => 0,
+		'is_searchable_in_grid' => 0,
+		    ]
+	    );
+
+	    $companyAttribute = $customerSetup->getEavConfig()->getAttribute(Customer::ENTITY, 'company_id')
+		    ->addData(
+		    [
+			'attribute_set_id' => $attributeSetId,
+			'attribute_group_id' => $attributeGroupId
+		    ]
+// more used_in_forms ['adminhtml_checkout','adminhtml_customer','adminhtml_customer_address','customer_account_edit','customer_address_edit','customer_register_address']
+	    );
+	    $companyAttribute->save();
+	}
+
+	$permissions = $this->_eavConfig->getAttribute(Customer::ENTITY, 'permissions');
+
+	if (!$permissions->getId()) {
+
+	    //echo "tests";exit;
+	    $customerSetup->addAttribute(Customer::ENTITY, 'permissions', [
+		'type' => 'varchar', // attribute with varchar type
+		'label' => 'SafetyHub App Permission',
+		'input' => 'text', // attribute input field is text
+		'required' => false, // field is not required
+		'visible' => true,
+		'user_defined' => true,
+		'position' => 1002,
+		'sort_order' => 0,
+		'system' => 0,
+		'is_used_in_grid' => 0, //setting grid options
+		'is_visible_in_grid' => 0,
+		'is_filterable_in_grid' => 0,
+		'is_searchable_in_grid' => 0,
+		    ]
+	    );
+
+	    $permissionsAttribute = $customerSetup->getEavConfig()->getAttribute(Customer::ENTITY, 'permissions')
+		    ->addData(
+		    [
+			'attribute_set_id' => $attributeSetId,
+			'attribute_group_id' => $attributeGroupId
+		    ]
+// more used_in_forms ['adminhtml_checkout','adminhtml_customer','adminhtml_customer_address','customer_account_edit','customer_address_edit','customer_register_address']
+	    );
+	    $result = $permissionsAttribute->save();
+	    //var_dump($result);
+	}
+    }
+
+}

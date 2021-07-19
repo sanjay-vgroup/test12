@@ -1,0 +1,507 @@
+<?php
+$getEditValues = $block->getEditRecords();
+$safetyItems = $block->getSafetyItemsData();
+//echo '<pre>';
+//print_r($safetyItems);
+//exit();
+?>
+<?php if ($getEditValues['entity_id'] && $getEditValues['entity_id'] != '') { ?>
+
+    <form class="form contact" name="myform" action="<?= $block->getUrl('safetyhubapp/safetyitems/save'); ?>" id="contact-form" method="post" data-hasrequired="<?= $block->escapeHtmlAttr(__('* Required Fields')) ?>" data-mage-init='{"validation":{}}'>
+
+        <input name="safety_users_items_id" id="safety_users_items_id" title="<?= $block->escapeHtmlAttr(__('Safety Users Items Id')) ?>" value="<?= $getEditValues['entity_id']; ?>" class="input-text" type="hidden"/>
+        <fieldset class="fieldset" >
+
+    	<div class="field name required">
+    	    <label class="label" for="name"><span><?= $block->escapeHtml(__('Safety Item Type')) ?></span></label>
+    	    <div class="control">
+    		<select name="types" id="types" onchange="showDiv(this)">
+    		    <option value="1" <?= $getEditValues['type'] == '1' ? ' selected="selected"' : ''; ?>>Cabinet</option>
+    		    <option value="2" <?= $getEditValues['type'] == '2' ? ' selected="selected"' : ''; ?>>Fire Exitinguisher</option>
+    		    <option value="3" <?= $getEditValues['type'] == '3' ? ' selected="selected"' : ''; ?>>AED</option>
+    		    <option value="4" <?= $getEditValues['type'] == '4' ? ' selected="selected"' : ''; ?>>Eyewash Stations</option>
+    		    <option value="5" <?= $getEditValues['type'] == '5' ? ' selected="selected"' : ''; ?>>Spill Control</option>
+    		</select>
+
+    	    </div>
+    	</div>
+
+    	<div name="cabinet_no" id="cabinet_no" style="display:<?= $getEditValues['type'] == '1' ? 'block' : 'none'; ?>">
+    	    <div class="field name required">
+    		<label class="label" for="name"><span><?= $block->escapeHtml(__('Cabinet Model no')) ?></span></label>
+    		<div class="control">
+    		    <input name="model_number" id="model_number" title="<?= $block->escapeHtmlAttr(__('Cabinet Model no')) ?>" value="<?= $getEditValues['model_number']; ?>" class="input-text" type="text" data-validate="{required:true}"/>
+    		</div>
+    	    </div>
+
+    	    <div class="field subject required">
+    		<label class="label" for="subject"><span><?php /* @escapeNotVerified */ echo __('Cabinet Serial no') ?></span></label>
+    		<div class="control">
+    		    <input name="serial_number" id="serial_number" title="<?php /* @escapeNotVerified */ echo __('Cabinet Serial no') ?>" value="<?= $getEditValues['serial_number']; ?>" class="input-text" type="text" data-validate="{required:true}"/>
+    		</div>
+    	    </div>
+
+    	    <div class="field email required">
+    		<label class="label" for="email"><span><?= $block->escapeHtml(__('Cabinet Nickname')) ?></span></label>
+    		<div class="control">
+    		    <input name="nickname" id="nickname" title="<?= $block->escapeHtmlAttr(__('Cabinet Nickname')) ?>" value="<?= $getEditValues['nickname']; ?>" class="input-text" type="text" data-validate="{required:true}"/>
+    		</div>
+    	    </div>
+
+    	    <div class="field telephone">
+    		<label class="label" for="telephone"><span><?= $block->escapeHtml(__('Cabinet Expiration Date')) ?></span></label>
+    		<div class="control">
+    		    <input name="expiration_date" id="expiration_date" title="<?= $block->escapeHtmlAttr(__('Cabinet Expiration Date')) ?>" value="<?= $getEditValues['expiration_date']; ?>"  class="input-text" type="date" />
+    		</div>
+    	    </div>
+    	    <div class="field telephone">
+    		<input name="cabinet_refill_reminder_status" id="cabinet_refill_reminder_status" title="<?= $block->escapeHtmlAttr(__('Remind me to refill cabinet')) ?>" value=" 1" <?php echo ( $getEditValues['refill_reminder_status'] == 1 ? 'checked' : ''); ?> class="input-text" type="checkbox" /> <label class="label inline-one" for="telephone"><span><?= $block->escapeHtml(__('Remind me to refill cabinet')) ?></span></label>
+        	    </div>
+    	    <div class="field telephone">
+    		<input name="cabinet_physical_inventory_status" id="cabinet_physical_inventory_status" title="<?= $block->escapeHtmlAttr(__('Do Physical inventory of cabinet')) ?>" value="1" <?php echo ( $getEditValues['physical_inventory_status'] == 1 ? 'checked' : ''); ?> class="input-text" type="checkbox" /> <label class="label inline-one" for="telephone"><span><?= $block->escapeHtml(__('Do Physical inventory of cabinet')) ?></span></label>
+    	    </div>  
+    	</div>
+
+    	<div name="fire_extinguisher" id="fire_extinguisher" style="display:<?= $getEditValues['type'] == '2' ? 'block' : 'none'; ?>">
+    	    <div class="field name required">
+    		<label class="label" for="name"><span><?= $block->escapeHtml(__('Fire Extinguisher model/serial no')) ?></span></label>
+    		<div class="control">
+    		    <input name="fire_model_number" id="fire_model_number" title="<?= $block->escapeHtmlAttr(__('Fire Extinguisher model/serial no')) ?>" value="<?= $getEditValues['model_number']; ?>" class="input-text" type="text" data-validate="{required:true}"/>
+    		</div>
+    	    </div>
+
+    	    <div class="field subject required">
+    		<label class="label" for="subject"><span><?php /* @escapeNotVerified */ echo __('Fire Extinguisher Nickname') ?></span></label>
+    		<div class="control">
+    		    <input name="fire_nickname" id="fire_nickname" title="<?php /* @escapeNotVerified */ echo __('Fire Extinguisher Nickname') ?>" value="<?= $getEditValues['nickname']; ?>" class="input-text" type="text" data-validate="{required:true}"/>
+    		</div>
+    	    </div>
+
+    	    <div class="field email required">
+    		<label class="label" for="email"><span><?= $block->escapeHtml(__('FX Expiration Date')) ?></span></label>
+    		<div class="control">
+    		    <input name="fx_expiration_date" id="fx_expiration_date" title="<?= $block->escapeHtmlAttr(__('FX Expiration Date')) ?>" value="<?= $getEditValues['expiration_date']; ?>" class="input-text" type="date" data-validate="{required:true}"/>
+    		</div>
+    	    </div>
+
+    	    <div class="field telephone">
+    		<label class="label" for="telephone"><span><?= $block->escapeHtml(__('Fire Extinguisher Service Due Date')) ?></span></label>
+    		<div class="control">
+    		    <input name="fire_service_due_date" id="fire_service_due_date" title="<?= $block->escapeHtmlAttr(__('Fire Extinguisher Service Due Date')) ?>" value="<?= $getEditValues['service_due_date']; ?>" class="input-text" type="date" />
+    		</div>
+    	    </div>
+    	    <div class="field telephone">
+    		<input name="fx_refill_reminder_days" id="fx_refill_reminder_days" title="<?= $block->escapeHtmlAttr(__('Check Fire Extinguisher Reminder')) ?>" value="1" <?php echo ($getEditValues['refill_reminder_days'] == 1 ? 'checked' : ''); ?> class="input-text" type="checkbox" /> <label class="label inline-one" for="telephone"><span><?= $block->escapeHtml(__('Check Fire Extinguisher Reminder')) ?></span></label>
+    	    </div>
+    	    <div class="field telephone">
+    		<input name="fx_refill_reminder_days" id="fx_refill_reminder_days" title="<?= $block->escapeHtmlAttr(__('FX Expiration/Service Due Date Alert')) ?>" value="1" <?php echo ($getEditValues['refill_reminder_days'] == 1 ? 'checked' : ''); ?> class="input-text" type="checkbox" /> <label class="label inline-one" for="telephone"><span><?= $block->escapeHtml(__('FX Expiration/Service Due Date Alert')) ?></span></label>
+    	    </div>  
+    	</div>
+
+    	<div name="aed_no" id="aed_no" style="display:<?= $getEditValues['type'] == '3' ? 'block' : 'none'; ?>">
+    	    <div class="field name required">
+    		<label class="label" for="name"><span><?= $block->escapeHtml(__('AED model/serial no')) ?></span></label>
+    		<div class="control">
+    		    <input name="aed_serial_number" id="aed_serial_number" title="<?= $block->escapeHtmlAttr(__('AED model/serial no')) ?>" value="<?= $getEditValues['serial_number']; ?>" class="input-text" type="text" data-validate="{required:true}"/>
+    		</div>
+    	    </div>
+
+    	    <div class="field subject required">
+    		<label class="label" for="subject"><span><?php /* @escapeNotVerified */ echo __('AED Nickname') ?></span></label>
+    		<div class="control">
+    		    <input name="aed_nickname" id="aed_nickname" title="<?php /* @escapeNotVerified */ echo __('AED Nickname') ?>" value="<?= $getEditValues['nickname']; ?>" class="input-text" type="text" data-validate="{required:true}"/>
+    		</div>
+    	    </div>
+
+    	    <div class="field email required">
+    		<label class="label" for="email"><span><?= $block->escapeHtml(__('AED Battery Expiration Date')) ?></span></label>
+    		<div class="control">
+    		    <input name="battery_expiration_date" id="battery_expiration_date" title="<?= $block->escapeHtmlAttr(__('AED Battery Expiration Date')) ?>" value="<?= $getEditValues['battery_expiration_date']; ?>" class="input-text" type="date" data-validate="{required:true}"/>
+    		</div>
+    	    </div>
+
+    	    <div class="field telephone">
+    		<label class="label" for="telephone"><span><?= $block->escapeHtml(__('AED Pad Expiration Date')) ?></span></label>
+    		<div class="control">
+    		    <input name="pad_expiration_date" id="pad_expiration_date" title="<?= $block->escapeHtmlAttr(__('AED Pad Expiration Date')) ?>" value="<?= $getEditValues['pad_expiration_date']; ?>" class="input-text" type="date" />
+    		</div>
+    	    </div>
+    	    <div class="field telephone">
+    		<label class="label" for="telephone"><span><?= $block->escapeHtml(__('AED Service Due Date')) ?></span></label>
+    		<div class="control">
+    		    <input name="aed_service_due_date" id="aed_service_due_date" title="<?= $block->escapeHtmlAttr(__('AED Service Due Date')) ?>" value="<?= $getEditValues['service_due_date']; ?>" class="input-text" type="date" />
+    		</div>
+    	    </div>
+    	    <div class="field telephone">
+    		<input name="aed_refill_reminder_status" id="aed_refill_reminder_status" title="<?= $block->escapeHtmlAttr(__('AED Reminder')) ?>" value="1" <?php echo ( $getEditValues['refill_reminder_status'] == 1 ? 'checked' : ''); ?> class="input-text" type="checkbox" /> <label class="label inline-one" for="telephone"><span><?= $block->escapeHtml(__('AED Reminder')) ?></span></label>
+    	    </div>
+    	    <div class="field telephone">
+    		<input name="expiry_reminder_status" id="expiry_reminder_status" title="<?= $block->escapeHtmlAttr(__('AED Expiration/Service Due Date Alert')) ?>" value="1" <?php echo ( $getEditValues['expiry_reminder_status'] == 1 ? 'checked' : ''); ?> class="input-text" type="checkbox" /> <label class="label inline-one" for="telephone"><span><?= $block->escapeHtml(__('AED Expiration/Service Due Date Alert')) ?></span></label>
+    	    </div>  
+    	</div>
+
+    	<div name="eyewash_no" id="eyewash_no" style="display:<?= $getEditValues['type'] == '4' ? 'block' : 'none'; ?>">
+    	    <div class="field name required">
+    		<label class="label" for="name"><span><?= $block->escapeHtml(__('Eyewash Stations Model no')) ?></span></label>
+    		<div class="control">
+    		    <input name="eyewash_stations_model_number" id="eyewash_stations_model_number" title="<?= $block->escapeHtmlAttr(__('Eyewash Stations Model no')) ?>" value="<?= $getEditValues['model_number']; ?>" class="input-text" type="text" data-validate="{required:true}"/>
+    		</div>
+    	    </div>
+
+    	    <div class="field subject required">
+    		<label class="label" for="subject"><span><?php /* @escapeNotVerified */ echo __('Eyewash Stations Nickname') ?></span></label>
+    		<div class="control">
+    		    <input name="eyewash_stations_nickname" id="eyewash_stations_nickname" title="<?php /* @escapeNotVerified */ echo __('Eyewash Stations Nickname') ?>" value="<?= $getEditValues['nickname']; ?>" class="input-text" type="text" data-validate="{required:true}"/>
+    		</div>
+    	    </div>
+
+    	    <div class="field email required">
+    		<label class="label" for="email"><span><?= $block->escapeHtml(__('Eyewash Stations Expiration Date')) ?></span></label>
+    		<div class="control">
+    		    <input name="eyewash_stations_expiration_date" id="eyewash_stations_expiration_date" title="<?= $block->escapeHtmlAttr(__('Eyewash Stations Expiration Date')) ?>" value="<?= $getEditValues['expiration_date']; ?>" class="input-text" type="date" data-validate="{required:true}"/>
+    		</div>
+    	    </div>
+
+
+    	    <div class="field telephone">
+    		<input name="check_eyewash_stations_reminder" id="check_eyewash_stations_reminder" title="<?= $block->escapeHtmlAttr(__('Check Eyewash Stations Reminder')) ?>" value="1" <?php echo ( $getEditValues['refill_reminder_status'] == 1 ? 'checked' : ''); ?> class="input-text" type="checkbox" /> <label class="label inline-one" for="telephone"><span><?= $block->escapeHtml(__('Check Eyewash Stations Reminder')) ?></span></label>
+    		<div class="control">
+    		    
+    		</div>
+    	    </div>
+    	    <div class="field telephone">
+    		<input name="do_physical_inventory_of_eyewash_stations" id="do_physical_inventory_of_eyewash_stations" title="<?= $block->escapeHtmlAttr(__('Do Physical Inventory Of Eyewash Stations')) ?>" value="1" <?php echo ( $getEditValues['physical_inventory_status'] == 1 ? 'checked' : ''); ?> class="input-text" type="checkbox" /> <label class="label inline-one" for="telephone"><span><?= $block->escapeHtml(__('Do Physical Inventory Of Eyewash Stations')) ?></span></label>
+    	    </div>
+    	</div>
+
+    	<div name="spill_no" id="spill_no" style="display:<?= $getEditValues['type'] == '5' ? 'block' : 'none'; ?>">
+    	    <div class="field name required">
+    		<label class="label" for="name"><span><?= $block->escapeHtml(__('Spill Control Model no')) ?></span></label>
+    		<div class="control">
+    		    <input name="spill_model_number" id="spill_model_number" title="<?= $block->escapeHtmlAttr(__('Spill Control Model no')) ?>" value="<?= $getEditValues['model_number']; ?>" class="input-text" type="text" data-validate="{required:true}"/>
+    		</div>
+    	    </div>
+
+    	    <div class="field subject required">
+    		<label class="label" for="subject"><span><?php /* @escapeNotVerified */ echo __('Spill Control Nickname') ?></span></label>
+    		<div class="control">
+    		    <input name="spill_nickname" id="spill_nickname" title="<?php /* @escapeNotVerified */ echo __('Spill Control Nickname') ?>" value="<?= $getEditValues['nickname']; ?>" class="input-text" type="text" data-validate="{required:true}"/>
+    		</div>
+    	    </div>
+
+    	    <div class="field telephone">
+    		<input name="spill_refill_reminder_status" id="spill_refill_reminder_status" title="<?= $block->escapeHtmlAttr(__('Check Eyewash Stations Reminder')) ?>" value="1" <?php echo ( $getEditValues['refill_reminder_status'] == 1 ? 'checked' : ''); ?> class="input-text" type="checkbox" /> <label class="label inline-one" for="telephone"><span><?= $block->escapeHtml(__('Check Spill Control Reminder')) ?></span></label>
+    	    </div>
+    	    <div class="field telephone">
+    		<input name="spill_physical_inventory_status" id="physical_inventory_status" title="<?= $block->escapeHtmlAttr(__('Do Physical Inventory Of Spill Control')) ?>" value="1" <?php echo ( $getEditValues['physical_inventory_status'] == 1 ? 'checked' : ''); ?> class="input-text" type="checkbox" /> <label class="label inline-one" for="telephone"><span><?= $block->escapeHtml(__('Do Physical Inventory Of Spill Control')) ?></span></label>
+    	    </div>
+    	</div>
+        </fieldset>
+
+        <div class="actions-toolbar">
+    	<div class="primary">
+
+    	    <button type="submit" title="<?= $block->escapeHtmlAttr(__('Submit')) ?>" class="action submit primary">
+    		<span><?= $block->escapeHtml(__('Submit')) ?></span>
+    	    </button>
+
+    	</div>
+    	<div class="actions"> 
+    	    <a class="primary action" href="<?php
+		/* @escapeNotVerified */ echo $block->getUrl(
+			'*/account/safetyitems');
+		?>">Back</a>
+    	</div>
+        </div>
+    </form>
+
+<?php } else { ?>
+
+
+    <form class="form contact" name="myform"
+          action="<?= $block->getUrl('safetyhubapp/safetyitems/save'); ?>"
+          id="contact-form"
+          method="post"
+          data-hasrequired="<?php /* @escapeNotVerified */ echo __('* Required Fields') ?>"
+          data-mage-init='{"validation":{}}'>
+
+
+        <fieldset class="fieldset" >
+
+		
+		<div class="form-outer">
+		<h2 class="legend">Safety item Information</h2>
+
+		<div class="hb-outbx">
+    	<div class="half-inbx">
+    	    <label class="label" for="name"><span><?= $block->escapeHtml(__('Safety Item Type')) ?></span></label>
+    	    <div class="control">
+    		<select name="types" id="types" onchange="showDiv(this)">
+    		    <option value="1">Cabinet</option>
+    		    <option value="2">Fire Exitinguisher</option>
+    		    <option value="3">AED</option>
+    		    <option value="4">Eyewash Stations</option>
+    		    <option value="5">Spill Control</option>
+    		</select>
+
+    	    </div>
+    	</div>
+
+
+
+    		<div class="half-inbx"> 
+
+    		    <div class="field model_number required">
+    			<label class="label" for="model_number"><span><?= $block->escapeHtml(__('Cabinet Model no')) ?></span>&nbsp;<span class="registrationFormAlert" style="color:green;" id="CheckPasswordMatch"></span> </label>
+    			<div class="control">
+    			    <input name="model_number" id="model_number1" title ="<?= $block->escapeHtmlAttr(__('Cabinet Model no')) ?>" value="<?= $block->escapeHtmlAttr($this->helper('Magento\Contact\Helper\Data')->getPostValue('model_number')) ?>" onkeyup="checkModelNoMatch()" class="input-text  input-form-left" type="text" data-validate="{required:true}"/>
+    			</div>
+    		    </div>
+    		</div> 
+    		<div class="half-inbx">       
+    		    <div class=" field subject required">
+    			<label class="label" for="subject"><span><?php /* @escapeNotVerified */ echo __('Cabinet Serial no') ?></span></label>
+    			<div class="control">
+    			    <input name="serial_number" id="serial_number" title="<?php /* @escapeNotVerified */ echo __('Cabinet Serial no') ?>" value="<?= $block->escapeHtmlAttr($this->helper('Magento\Contact\Helper\Data')->getPostValue('serial_number')) ?>" class="input-text" type="text" data-validate="{required:true}"/>
+    			</div>
+    		    </div>
+    		</div>
+
+
+    	    <div class="half-inbx required">
+    		<label class="label" for="email"><span><?= $block->escapeHtml(__('Cabinet Nickname')) ?></span></label>
+    		<div class="control">
+    		    <input name="nickname" id="nickname" title="<?= $block->escapeHtmlAttr(__('Cabinet Nickname')) ?>" value="<?= $block->escapeHtmlAttr($this->helper('Magento\Contact\Helper\Data')->getPostValue('nickname')) ?>" class="input-text" type="text" data-validate="{required:true}"/>
+    		</div>
+    	    </div>
+
+    	    <div class="half-inbx">
+    		<label class="label" for="telephone"><span><?= $block->escapeHtml(__('Cabinet Expiration Date')) ?></span></label>
+    		<div class="control">
+    		    <input name="expiration_date" id="cabinet_expiration_date" title="<?= $block->escapeHtmlAttr(__('Cabinet Expiration Date')) ?>" value="<?= $block->escapeHtmlAttr($this->helper('Magento\Contact\Helper\Data')->getPostValue('cabinet_expiration_date')) ?>" class="input-text" type="date" />
+    		</div>
+    	    </div>
+    	    <div class="half-inbx">
+    		<input name="cabinet_refill_reminder_status" id="cabinet_refill_reminder_status" title="<?= $block->escapeHtmlAttr(__('Remind me to refill cabinet')) ?>" value="1" class="input-text" type="checkbox" /> <label class="label inline-one" for="telephone"><span><?= $block->escapeHtml(__('Remind me to refill cabinet')) ?></span></label>
+    	    </div>
+    	    <div class="half-inbx">
+    		<input name="cabinet_physical_inventory_status" id="cabinet_physical_inventory_status" title="<?= $block->escapeHtmlAttr(__('Do Physical inventory of cabinet')) ?>" value="1" class="input-text" type="checkbox" /> <label class="label inline-one" for="telephone"><span><?= $block->escapeHtml(__('Do Physical inventory of cabinet')) ?></span></label>
+    	    </div>  
+		</div>
+
+    	<div name="fire_extinguisher" id="fire_extinguisher" style="Display:none;">
+		<div class="hb-outbx">
+    	    <div class="half-inbx required">
+    		<label class="label" for="name"><span><?= $block->escapeHtml(__('Fire Extinguisher model/serial no')) ?></span></label>
+    		<div class="control">
+    		    <input name="fire_model_number" id="fire_model_number" title="<?= $block->escapeHtmlAttr(__('Fire Extinguisher model/serial no')) ?>" value="<?= $block->escapeHtmlAttr($this->helper('Magento\Contact\Helper\Data')->getPostValue('fire_model_number')) ?>" class="input-text" type="text" data-validate="{required:true}"/>
+    		</div>
+    	    </div>
+
+    	    <div class="half-inbx required">
+    		<label class="label" for="subject"><span><?php /* @escapeNotVerified */ echo __('Fire Extinguisher Nickname') ?></span></label>
+    		<div class="control">
+    		    <input name="fire_nickname" id="fire_nickname" title="<?php /* @escapeNotVerified */ echo __('Fire Extinguisher Nickname') ?>" value="<?= $block->escapeHtmlAttr($this->helper('Magento\Contact\Helper\Data')->getPostValue('fire_nickname')) ?>" class="input-text" type="text" data-validate="{required:true}"/>
+    		</div>
+    	    </div>
+
+    	    <div class="half-inbx required">
+    		<label class="label" for="email"><span><?= $block->escapeHtml(__('FX Expiration Date')) ?></span></label>
+    		<div class="control">
+    		    <input name="fx_expiration_date" id="fx_expiration_date" title="<?= $block->escapeHtmlAttr(__('FX Expiration Date')) ?>" value="<?= $block->escapeHtmlAttr($this->helper('Magento\Contact\Helper\Data')->getPostValue('fx_expiration_date')) ?>" class="input-text" type="date" data-validate="{required:true}"/>
+    		</div>
+    	    </div>
+
+    	    <div class="half-inbx">
+    		<label class="label" for="telephone"><span><?= $block->escapeHtml(__('Fire Extinguisher Service Due Date')) ?></span></label>
+    		<div class="control">
+    		    <input name="fire_service_due_date" id="fire_service_due_date" title="<?= $block->escapeHtmlAttr(__('Fire Extinguisher Service Due Date')) ?>" value="<?= $block->escapeHtmlAttr($this->helper('Magento\Contact\Helper\Data')->getPostValue('fire_service_due_date')) ?>" class="input-text" type="date" />
+    		</div>
+    	    </div>
+    	    <div class="half-inbx">
+    		<input name="check_fire_extinguisher_reminder" id="check_fire_extinguisher_reminder" title="<?= $block->escapeHtmlAttr(__('Check Fire Extinguisher Reminder')) ?>" value="1" class="input-text" type="checkbox" /> <label class="label inline-one" for="telephone"><span><?= $block->escapeHtml(__('Check Fire Extinguisher Reminder')) ?></span></label>
+    	    </div>
+    	    <div class="half-inbx">
+    		<input name="fx_refill_reminder_days" id="fx_refill_reminder_days" title="<?= $block->escapeHtmlAttr(__('FX Expiration/Service Due Date Alert')) ?>" value="1" class="input-text" type="checkbox" /> <label class="label inline-one" for="telephone"><span><?= $block->escapeHtml(__('FX Expiration/Service Due Date Alert')) ?></span></label>
+    	    </div> 
+		</div>
+    	</div>
+
+    	<div name="aed_no" id="aed_no" style="display:none;">
+		<div class="hb-outbx">
+    	    <div class="half-inbx required">
+    		<label class="label" for="name"><span><?= $block->escapeHtml(__('AED model/serial no')) ?></span></label>
+    		<div class="control">
+    		    <input name="aed_serial_number" id="aed_serial_number" title="<?= $block->escapeHtmlAttr(__('AED model/serial no')) ?>" value="<?= $block->escapeHtmlAttr($this->helper('Magento\Contact\Helper\Data')->getPostValue('aed_serial_number')) ?>" class="input-text" type="text" data-validate="{required:true}"/>
+    		</div>
+    	    </div>
+
+    	    <div class="half-inbx required">
+    		<label class="label" for="subject"><span><?php /* @escapeNotVerified */ echo __('AED Nickname') ?></span></label>
+    		<div class="control">
+    		    <input name="aed_nickname" id="aed_nickname" title="<?php /* @escapeNotVerified */ echo __('AED Nickname') ?>" value="<?= $block->escapeHtmlAttr($this->helper('Magento\Contact\Helper\Data')->getPostValue('aed_nickname')) ?>" class="input-text" type="text" data-validate="{required:true}"/>
+    		</div>
+    	    </div>
+
+    	    <div class="half-inbx required">
+    		<label class="label" for="email"><span><?= $block->escapeHtml(__('AED Battery Expiration Date')) ?></span></label>
+    		<div class="control">
+    		    <input name="battery_expiration_date" id="battery_expiration_date" title="<?= $block->escapeHtmlAttr(__('AED Battery Expiration Date')) ?>" value="<?= $block->escapeHtmlAttr($this->helper('Magento\Contact\Helper\Data')->getPostValue('battery_expiration_date')) ?>" class="input-text" type="date" data-validate="{required:true}"/>
+    		</div>
+    	    </div>
+
+    	    <div class="half-inbx">
+    		<label class="label" for="telephone"><span><?= $block->escapeHtml(__('AED Pad Expiration Date')) ?></span></label>
+    		<div class="control">
+    		    <input name="pad_expiration_date" id="pad_expiration_date" title="<?= $block->escapeHtmlAttr(__('AED Pad Expiration Date')) ?>" value="<?= $block->escapeHtmlAttr($this->helper('Magento\Contact\Helper\Data')->getPostValue('pad_expiration_date')) ?>" class="input-text" type="date" />
+    		</div>
+    	    </div>
+    	    <div class="half-inbx">
+    		<label class="label" for="telephone"><span><?= $block->escapeHtml(__('AED Service Due Date')) ?></span></label>
+    		<div class="control">
+    		    <input name="aed_service_due_date" id="aed_service_due_date" title="<?= $block->escapeHtmlAttr(__('AED Service Due Date')) ?>" value="<?= $block->escapeHtmlAttr($this->helper('Magento\Contact\Helper\Data')->getPostValue('aed_service_due_date')) ?>" class="input-text" type="date" />
+    		</div>
+    	    </div>
+    	    <div class="half-inbx">
+    		<input name="aed_refill_reminder_status" id="aed_refill_reminder_status" title="<?= $block->escapeHtmlAttr(__('AED Reminder')) ?>" value="1" class="input-text" type="checkbox" /> <label class="label inline-one" for="telephone"><span><?= $block->escapeHtml(__('AED Reminder')) ?></span></label>
+    	    </div>
+    	    <div class="half-inbx">
+    		<input name="expiry_reminder_status" id="expiry_reminder_status" title="<?= $block->escapeHtmlAttr(__('AED Expiration/Service Due Date Alert')) ?>" value="1" class="input-text" type="checkbox" /> <label class="label inline-one" for="telephone"><span><?= $block->escapeHtml(__('AED Expiration/Service Due Date Alert')) ?></span></label>
+    	    </div>  
+		</div>
+    	</div>
+
+    	<div name="eyewash_no" id="eyewash_no" style="display:none;">
+		<div class="hb-outbx">
+    	    <div class="half-inbx required">
+    		<label class="label" for="name"><span><?= $block->escapeHtml(__('Eyewash Stations Model no')) ?></span></label>
+    		<div class="control">
+    		    <input name="eyewash_stations_model_number" id="eyewash_stations_model_number" title="<?= $block->escapeHtmlAttr(__('Eyewash Stations Model no')) ?>" value="<?= $block->escapeHtmlAttr($this->helper('Magento\Contact\Helper\Data')->getPostValue('eyewash_stations_model_number')) ?>" class="input-text" type="text" data-validate="{required:true}"/>
+    		</div>
+    	    </div>
+
+    	    <div class="half-inbx required">
+    		<label class="label" for="subject"><span><?php /* @escapeNotVerified */ echo __('Eyewash Stations Nickname') ?></span></label>
+    		<div class="control">
+    		    <input name="eyewash_stations_nickname" id="eyewash_stations_nickname" title="<?php /* @escapeNotVerified */ echo __('Eyewash Stations Nickname') ?>" value="<?= $block->escapeHtmlAttr($this->helper('Magento\Contact\Helper\Data')->getPostValue('eyewash_stations_nickname')) ?>" class="input-text" type="text" data-validate="{required:true}"/>
+    		</div>
+    	    </div>
+
+    	    <div class="half-inbx required">
+    		<label class="label" for="email"><span><?= $block->escapeHtml(__('Eyewash Stations Expiration Date')) ?></span></label>
+    		<div class="control">
+    		    <input name="eyewash_stations_expiration_date" id="eyewash_stations_expiration_date" title="<?= $block->escapeHtmlAttr(__('Eyewash Stations Expiration Date')) ?>" value="<?= $block->escapeHtmlAttr($this->helper('Magento\Contact\Helper\Data')->getPostValue('eyewash_stations_expiration_date')) ?>" class="input-text" type="date" data-validate="{required:true}"/>
+    		</div>
+    	    </div>
+
+
+    	    <div class="half-inbx">
+    		<input name="check_eyewash_stations_reminder" id="check_eyewash_stations_reminder" title="<?= $block->escapeHtmlAttr(__('Check Eyewash Stations Reminder')) ?>" value="1" class="input-text" type="checkbox" /> <label class="label inline-one" for="telephone"><span><?= $block->escapeHtml(__('Check Eyewash Stations Reminder')) ?></span></label>
+    	    </div>
+    	    <div class="half-inbx">
+    		<input name="do_physical_inventory_of_eyewash_stations" id="do_physical_inventory_of_eyewash_stations" title="<?= $block->escapeHtmlAttr(__('Do Physical Inventory Of Eyewash Stations')) ?>" value="1" class="input-text" type="checkbox inline-one" /> <label class="label" for="telephone"><span><?= $block->escapeHtml(__('Do Physical Inventory Of Eyewash Stations')) ?></span></label>
+    	    </div>
+		</div>
+    	</div>
+
+    	<div name="spill_no" id="spill_no" style="display:none;">
+		<div class="hb-outbx">
+    	    <div class="half-inbx required">
+    		<label class="label" for="name"><span><?= $block->escapeHtml(__('Spill Control Model no')) ?></span><span>0</span></label>
+    		<div class="control">
+    		    <input name="spill_model_number" id="spill_model_number" title="<?= $block->escapeHtmlAttr(__('Spill Control Model no')) ?>" value="<?= $block->escapeHtmlAttr($this->helper('Magento\Contact\Helper\Data')->getPostValue('spill_model_number')) ?>" class="input-text" type="text" data-validate="{required:true}"/>
+    		</div>
+    	    </div>
+
+    	    <div class="half-inbx required">
+    		<label class="label" for="subject"><span><?php /* @escapeNotVerified */ echo __('Spill Control Nickname') ?></span></label>
+    		<div class="control">
+    		    <input name="spill_nickname" id="spill_nickname" title="<?php /* @escapeNotVerified */ echo __('Spill Control Nickname') ?>" value="<?= $block->escapeHtmlAttr($this->helper('Magento\Contact\Helper\Data')->getPostValue('spill_nickname')) ?>" class="input-text" type="text" data-validate="{required:true}"/>
+    		</div>
+    	    </div>
+
+    	    <div class="half-inbx">
+    		<input name="spill_refill_reminder_status" id="spill_refill_reminder_status" title="<?= $block->escapeHtmlAttr(__('Check Eyewash Stations Reminder')) ?>" value="1" class="input-text" type="checkbox" /> <label class="label inline-one" for="telephone"><span><?= $block->escapeHtml(__('Check Spill Control Reminder')) ?></span></label>
+    	    </div>
+    	    <div class="half-inbx">
+    		<input name="spill_physical_inventory_status" id="spill_physical_inventory_status" title="<?= $block->escapeHtmlAttr(__('Do Physical Inventory Of Spill Control')) ?>" value="1" class="input-text" type="checkbox" /> <label class="label inline-one" for="telephone"><span><?= $block->escapeHtml(__('Do Physical Inventory Of Spill Control')) ?></span></label>
+    	    </div>
+		</div>
+		</div>
+		
+		<div class="actions-toolbar">
+    	<div class="primary">
+
+    	    <button type="submit" title="<?= $block->escapeHtmlAttr(__('Submit')) ?>" class="action submit primary">
+    		<span><?= $block->escapeHtml(__('Submit')) ?></span>
+    	    </button>
+    	    <button type="reset" title="<?= $block->escapeHtmlAttr(__('Reset')) ?>" class="action submit btn btn-dark">
+    		<span><?= $block->escapeHtml(__('Reset')) ?></span>
+    	    </button>
+    	</div>
+    	
+		</div>
+		
+		</div>
+		<div class="actions" > 
+    	    <a class="primary action gray" href="<?php
+		   /* @escapeNotVerified */ echo $block->getUrl(
+			   '*/account/safetyitems');
+		   ?>" ><i class="fa fa-arrow-left" aria-hidden="true"></i> Back to Manage Safety items</a>
+    	</div>
+        </fieldset>
+
+        
+    </form>
+<?php } ?>
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script type="text/javascript">
+                                function checkModelNoMatch() {
+
+                                    var modelNumber = 123456;
+                                    var requestModelNo = $("#model_number1").val();
+
+                                    if (modelNumber != requestModelNo)
+                                        $("#CheckPasswordMatch").html("Model Number does not match!");
+                                    else
+                                        $("#CheckPasswordMatch").html("Model Number match.");
+                                }
+
+</script>
+
+<script type="text/javascript">
+    function showDiv(select) {
+        if (select.value == 2) {
+            document.getElementById('fire_extinguisher').style.display = "block";
+            document.getElementById('aed_no').style.display = "none";
+            document.getElementById('cabinet_no').style.display = "none";
+            document.getElementById('spill_no').style.display = "none";
+        } else if (select.value == 3) {
+            document.getElementById('aed_no').style.display = "block";
+            document.getElementById('fire_extinguisher').style.display = "none";
+            document.getElementById('cabinet_no').style.display = "none";
+            document.getElementById('eyewash_no').style.display = "none";
+            document.getElementById('spill_no').style.display = "none";
+        } else if (select.value == 4) {
+            document.getElementById('eyewash_no').style.display = "block";
+            document.getElementById('spill_no').style.display = "none";
+            document.getElementById('cabinet_no').style.display = "none";
+            document.getElementById('aed_no').style.display = "none";
+            document.getElementById('fire_extinguisher').style.display = "none";
+        } else if (select.value == 5) {
+            document.getElementById('spill_no').style.display = "block";
+            document.getElementById('eyewash_no').style.display = "none";
+            document.getElementById('cabinet_no').style.display = "none";
+            document.getElementById('aed_no').style.display = "none";
+            document.getElementById('fire_extinguisher').style.display = "none";
+        } else {
+            document.getElementById('spill_no').style.display = "none";
+            document.getElementById('cabinet_no').style.display = "block";
+            document.getElementById('fire_extinguisher').style.display = "none";
+            document.getElementById('aed_no').style.display = "none";
+        }
+    }
+</script>

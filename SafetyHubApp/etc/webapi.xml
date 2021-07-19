@@ -1,0 +1,164 @@
+<?xml version="1.0"?>
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Webapi:etc/webapi.xsd">
+    <route url="/V1/integration/customer/token" method="POST">
+        <service class="Vgroup\SafetyHubApp\Api\CustomerTokenServiceInterface" method="createCustomerAccessToken"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+    <route method="GET" url="/V1/safetyhubapp/getstate/:countryId">
+        <service class="Vgroup\SafetyHubApp\Api\CountryStateInterface" method="getState"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+    <route method="POST" url="/V1/safetyuseritem">
+        <service class="Vgroup\SafetyHubApp\Api\SafetyUsersItemsRepositoryInterface" method="save"/>
+        <resources>
+            <resource ref="self"/>
+        </resources>
+    </route>
+    <route method="PUT" url="/V1/safetyuseritem/:id">
+        <service class="Vgroup\SafetyHubApp\Api\SafetyUsersItemsRepositoryInterface" method="save"/>
+        <resources>
+            <resource ref="self"/>
+        </resources>
+    </route>
+    <route method="GET" url="/V1/safetyuseritem/:id">
+        <service class="Vgroup\SafetyHubApp\Api\SafetyUsersItemsRepositoryInterface" method="getById"/>
+        <resources>
+            <resource ref="self"/>
+        </resources>
+    </route>
+    <route method="GET" url="/V1/safetyuseritem/search/:customerId">
+        <service class="Vgroup\SafetyHubApp\Api\SafetyUsersItemsRepositoryInterface" method="getList"/>
+        <resources>
+            <resource ref="self"/>
+        </resources>
+    </route>
+    <route method="DELETE" url="/V1/safetyuseritem/:id">
+        <service class="Vgroup\SafetyHubApp\Api\SafetyUsersItemsRepositoryInterface" method="deleteById"/>
+        <resources>
+            <resource ref="self"/>
+        </resources>
+    </route>
+    <route method="PUT" url="/V1/safetyuseritem/:id/:customerId">
+        <service class="Vgroup\SafetyHubApp\Api\SafetyUsersItemsRepositoryInterface" method="saveInventory"/>
+        <resources>
+            <resource ref="self"/>
+        </resources>
+    </route>
+    <route method="GET" url="/V1/safetyitem/search/:customerId/:isApi">
+        <service class="Vgroup\SafetyHubApp\Api\SafetyItemsRepositoryInterface" method="getList"/>
+        <resources>
+            <resource ref="self"/>
+        </resources>
+    </route>
+    <route method="POST" url="/V1/requisition">
+        <service class="Vgroup\SafetyHubApp\Api\RequisitionsRepositoryInterface" method="place"/>
+        <resources>
+            <resource ref="self"/>
+        </resources>
+    </route>
+    <route method="PUT" url="/V1/requisition/:id">
+        <service class="Vgroup\SafetyHubApp\Api\RequisitionsRepositoryInterface" method="place"/>
+        <resources>
+            <resource ref="self"/>
+        </resources>
+    </route>
+    <route method="GET" url="/V1/requisition/:id/:customerId">
+        <service class="Vgroup\SafetyHubApp\Api\RequisitionsRepositoryInterface" method="getById"/>
+        <resources>
+            <resource ref="self"/>
+        </resources>
+    </route>
+    <route method="GET" url="/V1/requisitions/search">
+        <service class="Vgroup\SafetyHubApp\Api\RequisitionsRepositoryInterface" method="getList"/>
+        <resources>
+            <resource ref="self"/>
+        </resources>
+    </route>
+    
+    <route method="GET" url="/V1/company/:companyId">
+        <service class="Vgroup\SafetyHubApp\Api\CompanyRepositoryInterface" method="getById"/>
+        <resources>
+            <resource ref="self"/>
+        </resources>
+    </route>
+    <route method="POST" url="/V1/report">
+        <service class="Vgroup\SafetyHubApp\Api\ReportsRepositoryInterface" method="export"/>
+        <resources>
+            <resource ref="self"/>
+        </resources>
+    </route>
+    <route url="/V1/integration/customer/adddevicetoken" method="POST">
+        <service class="Vgroup\SafetyHubApp\Api\CustomerTokenServiceInterface" method="addDeviceToken"/>
+        <resources>
+            <resource ref="self"/>
+        </resources>
+    </route>
+    <route url="/V1/offlinesync" method="POST">
+        <service class="Vgroup\SafetyHubApp\Api\OfflineSyncRepositoryInterface" method="sync"/>
+        <resources>
+            <resource ref="self"/>
+        </resources>
+    </route>
+    <route url="/V1/customers/me/password" method="PUT">
+        <service class="Vgroup\SafetyHubApp\Api\AccountManagementInterface" method="changePasswordById"/>
+        <resources>
+            <resource ref="self"/>
+        </resources>
+        <data>
+            <parameter name="customerId" force="true">%customer_id%</parameter>
+        </data>
+    </route>
+    <route url="/V1/customers/password" method="PUT">
+        <service class="Vgroup\SafetyHubApp\Api\AccountManagementInterface" method="initiatePasswordReset"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+    <route method="POST" url="/V1/checkok">
+        <service class="Vgroup\SafetyHubApp\Api\SafetyUsersItemsRepositoryInterface" method="checkOk"/>
+        <resources>
+            <resource ref="self"/>
+        </resources>
+    </route> 
+    <route method="POST" url="/V1/movetodraft">
+        <service class="Vgroup\SafetyHubApp\Api\RequisitionsRepositoryInterface" method="moveToDraft"/>
+        <resources>
+            <resource ref="self"/>
+        </resources>
+    </route>
+    <route method="POST" url="/V1/removedraftitems">
+        <service class="Vgroup\SafetyHubApp\Api\RequisitionsRepositoryInterface" method="removeDraftItems"/>
+        <resources>
+            <resource ref="self"/>
+        </resources>
+    </route>
+    <route url="/V1/safeyitemproducts" method="GET">
+        <service class="Vgroup\SafetyHubApp\Api\SafetyItemProductsSearchRepositoryInterface" method="getList"/>
+        <resources>
+            <resource ref="self" />
+        </resources>
+    </route>
+    <route method="GET" url="/V1/refill/:id/:modelNumber">
+        <service class="Vgroup\SafetyHubApp\Api\RequisitionsRepositoryInterface" method="placetest"/>
+        <resources>
+            <resource ref="self"/>
+        </resources>
+    </route>
+    <route url="/V1/integration/customer/revoke" method="POST">
+        <service class="Vgroup\SafetyHubApp\Api\CustomerRevokeTokenServiceInterface"
+                 method="revokeCustomerAccessToken"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+    <route url="/V1/sendofflinesyncemail" method="POST">
+        <service class="Vgroup\SafetyHubApp\Api\OfflineSyncRepositoryInterface" method="sendMail"/>
+        <resources>
+            <resource ref="self"/>
+        </resources>
+    </route> 
+</routes>

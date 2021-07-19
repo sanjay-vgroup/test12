@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<layout xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/layout_generic.xsd">
+    <update handle="formkey"/>
+    <container name="root" label="Root">
+        <block class="Vgroup\SafetyHubApp\Block\Adminhtml\Companies\Edit\Tab\PartNumbers" name="safetyhubapp.companies.edit.tab.partnumbers"/>
+        <block class="Magento\Backend\Block\Widget\Grid\Serializer" name="partnumbers_grid_serializer">
+            <arguments>
+                <argument name="grid_block" xsi:type="string">safetyhubapp.companies.edit.tab.partnumbers</argument>
+                <argument name="callback" xsi:type="string">getSelectedPartNumbers</argument>
+                <argument name="input_element_name" xsi:type="string">partnumbers</argument>
+                <argument name="reload_param_name" xsi:type="string">companies_partnumbers</argument>
+            </arguments>
+        </block>
+    </container>
+</layout>

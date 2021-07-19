@@ -1,0 +1,79 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="Vgroup_SafetyHubApp::css/default.css"/>
+        <css src="Vgroup_SafetyHubApp::css/backend.css" />
+        <css src="Vgroup_SafetyHubApp::css/theme-colors.css" />
+    </head>
+    <body>
+        <block name="require.js" class="Magento\Backend\Block\Page\RequireJs" template="Vgroup_SafetyHubApp::page/js/require_js.phtml"/>
+        <referenceBlock name="top.links">
+            <referenceBlock name="wish-list-link" remove="true" />          <!--for WishList Link-->
+            <referenceBlock name="my-account-link" remove="true" />         <!--for My Account Link-->
+        </referenceBlock>
+        <referenceContainer name="header-wrapper">
+            <referenceBlock name="navigation.sections" remove="true" />
+        </referenceContainer>
+        <referenceContainer name="header.container">
+            <referenceBlock name="top.search" remove="true"/>
+            <referenceBlock name="minicart" remove="true"/>
+        </referenceContainer>
+        <referenceContainer name="content">
+            <referenceBlock name="sidebar.additional" remove="true"/>
+        </referenceContainer >
+        <referenceBlock name="form.subscribe" remove="true"/>
+        <referenceBlock name="footer_links" remove="true"/>
+        <referenceBlock name="copyright" remove="true"/>
+
+        <move element="logo" destination="sidebar.main" before="-" />
+        <move element="page.main.title" destination="content.top" />
+        <move element="page.messages" destination="content.top" />
+
+        <referenceBlock name="header.links">
+            <block class="Magento\Customer\Block\Account\SortLink" name="account-profile-top-link" after="wish-list-link">
+                <arguments>
+                    <argument name="path" xsi:type="string">safetyhubapp/account/profile</argument>
+                    <argument name="label" xsi:type="string" translate="true">Profile</argument>
+                </arguments>
+            </block>
+            <block class="Magento\Customer\Block\Account\SortLink" name="order-history-top-link" after="wish-list-link">
+                <arguments>
+                    <argument name="path" xsi:type="string">safetyhubapp/manage/requisition</argument>
+                    <argument name="label" xsi:type="string" translate="true">Review Requisitions</argument>
+                </arguments>
+            </block>
+            <block class="Magento\Framework\View\Element\Html\Link" name="contact-top-header-link">
+                <arguments>
+                    <argument name="path" xsi:type="string">help</argument>
+                    <argument name="label" xsi:type="string" translate="true">Help</argument>
+                </arguments>
+            </block>
+        </referenceBlock>
+        <referenceContainer name="content">
+            <block class="Magento\Customer\Block\Account\AuthenticationPopup" name="authentication-popup" as="authentication-popup" template="Magento_Customer::account/authentication-popup.phtml">
+                <arguments>
+                    <argument name="jsLayout" xsi:type="array">
+                        <item name="components" xsi:type="array">
+                            <item name="authenticationPopup" xsi:type="array">
+                                <item name="component" xsi:type="string">Magento_Customer/js/view/authentication-popup</item>
+                                <item name="children" xsi:type="array">
+                                    <item name="messages" xsi:type="array">
+                                        <item name="component" xsi:type="string">Magento_Ui/js/view/messages</item>
+                                        <item name="displayArea" xsi:type="string">messages</item>
+                                    </item>
+                                </item>
+                            </item>
+                        </item>
+                    </argument>
+                </arguments>
+            </block>
+            <block class="Magento\Framework\View\Element\Template" name="page.actions.toolbar" template="Vgroup_SafetyHubApp::pageactions.phtml"/>
+        </referenceContainer>
+    </body>
+</page>

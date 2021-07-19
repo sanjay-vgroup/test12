@@ -1,0 +1,108 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+// @codingStandardsIgno
+?>
+<?php
+$usersSafetyItem = $block->getViewRecords()->getData();
+$safetyUsersItems = $block->getProductCollection();
+
+echo "<pre>";
+//print_r($usersSafetyItem);
+//exit();
+?>
+<?php if($usersSafetyItem['type'] != 0) :
+ ?>
+    <section class="admin__page-section order-view-account-information">
+    
+        <div class="admin__page-section-title">
+             <div><img src="<?= $block->escapeHtml($usersSafetyItem['image']); ?>" alt="image-icon" width="200" height="auto" /></div>
+
+            <span class="title"><?= $block->escapeHtml(__('Safety Item Information')) ?></span>
+        </div>
+        <div class="admin__page-section-content">
+            <div class="admin__page-section-item order-information">
+		<?php /* Order Information */ ?>
+                <div class="admin__page-section-item-content">
+                    <table class="admin__table-secondary order-information-table">
+                    <tr>
+    			<th><?= $block->escapeHtml(__('Inventory last checked on')) ?></th>
+    			<td><?= $block->escapeHtml($usersSafetyItem['physical_inventory_date']) ?></td>
+    		    </tr>
+    		    <tr>
+    			<th><?= $block->escapeHtml(__('Safety Item Name')) ?></th>
+    			<td><?= $block->escapeHtml($usersSafetyItem['name']) ?></td>
+    		    </tr>
+    		    <tr>
+    			<th><?= $block->escapeHtml(__('Model Number')) ?></th>
+    			<td><?= $block->escapeHtml($usersSafetyItem['model_number']) ?></td>
+    		    </tr>
+    		    <tr>
+    			<th><?= $block->escapeHtml(__('Serial Number')) ?></th>
+    			<td><?= $block->escapeHtml($usersSafetyItem['serial_number']) ?></td>
+    		    </tr>
+    		    <tr>
+    			<th><?= $block->escapeHtml(__('Nickname')) ?></th>
+    			<td><?= $block->escapeHtml($usersSafetyItem['nickname']) ?></td>
+    		    </tr>
+                   <tr>
+    			<th><?= $block->escapeHtml(__('Location')) ?></th>
+    			<td><?= $block->escapeHtml($usersSafetyItem['street']) ?> <?= $block->escapeHtml($usersSafetyItem['city']) ?> <?= $block->escapeHtml($usersSafetyItem['region'])?>
+                        <?= $block->escapeHtml($usersSafetyItem['postcode'])?></td>
+    		    </tr>
+                  <tr>
+    			<th><?= $block->escapeHtml(__('Description')) ?></th>
+    			<td><?=  $block->escapeHtml(strip_tags($usersSafetyItem['description'])) ?></td>
+    		    </tr>
+    		</table>
+                </div>
+            </div>
+
+
+        </div>
+    </section>
+<?php endif; ?>
+<?php  if (($safetyUsersItems)): ?>
+    <section class="admin__page-section">
+        <div class="admin__page-section-title">
+    	<span class="title">Safety Users Items</span>
+        </div>
+        <div class="admin__table-wrapper">
+
+    	<div class="admin__table-wrapper">
+    	    <table class="data-table admin__table-primary edit-order-table">
+    		<thead>
+    		    <tr class="headings">
+    			<th class="col-sku"><span>Part Number</span></th>
+    			<th class="col-sku"><span>Item Name</span></th>
+    			<th class="col-sku"><span>Qty</span></th>
+    		    </tr>
+    		</thead>
+		    <?php $i = 0; ?>
+		    <?php foreach ($safetyUsersItems as $productItem) : 
+                    
+                  ?>
+			<tbody class="<?= /* @noEscape */ $i % 2 ? 'even' : 'odd' ?>">
+			<td class="col-sku"><span><?= $productItem->getSku(); ?></span></td>
+                        <td class="col-sku"><span><?= $productItem->getName(); ?></span></td>
+			<td class="col-sku"><span><?= $productItem->getQty(); ?></span></td>
+			</tbody>
+			<?php $i++; ?>
+		    <?php endforeach; ?>
+    	    </table>
+    	</div>
+          <div class="actions" > 
+    <a class="primary action" href="<?php /* @escapeNotVerified */ echo $block->getUrl(
+                                  '*/account/safetyitems');?>">Back</a>
+</div>
+        </div>
+    </section>
+<?php endif; ?>
+
+
+
+
+
+

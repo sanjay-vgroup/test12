@@ -1,0 +1,214 @@
+<?php 
+$reguisition = $block->getRequisition()->getData(); 
+$approvedReguisition = $block->getApprovedRequisition()->getData();
+$rejectedRequisition = $block->getRejectedRequisition()->getData();
+$pendingRequisition = $block->getPendingRequisition()->getData();
+
+$companyCodes = $block->getCompany()->getData(); 
+$customer = $block->getCustomer()->getData();
+?>
+<div class="outer-bx">
+  
+<fieldset class="fieldset form-inline entry-edit test">
+<div class="dash-top">
+  <div class="activity_box box-blue">
+  <div class="innerbx">
+  <i class="activity-icon">
+      <img src="https://app.firstaidonly.com/skin/frontend/fao_app/default/images/icon_requisition_db.png" alt="Requisitions">
+  </i>
+  <div class="activity-content">
+	<h3>Requisition</h3>
+	<div class="field ">
+		<label for="users" class="label"><span><?php /* @escapeNotVerified */ echo __('Total') ?></span></label>
+		<div class="control">
+		    <span><?= count($reguisition) ?></span>
+		</div>
+	</div> 
+	<div class="field ">
+		<label for="users" class="label"><span><?php /* @escapeNotVerified */ echo __('Approved') ?></span></label>
+		<div class="control">
+		    <span><?= count($approvedReguisition) ?></span>
+		</div>
+	</div> 
+	<div class="field ">
+		<label for="users" class="label"><span><?php /* @escapeNotVerified */ echo __('Rejected') ?></span></label>
+		<div class="control">
+		    <span><?= count($rejectedRequisition) ?></span>
+		</div>
+	</div>
+	<div class="field ">
+		<label for="users" class="label"><span><?php /* @escapeNotVerified */ echo __('Pending') ?></span></label>
+		<div class="control">
+		    <span><?= count($pendingRequisition) ?></span>
+		</div>
+	</div>
+</div>
+</div>
+  </div>
+
+  <div class="activity_box box-yellow">
+  <div class="innerbx">
+  <i class="activity-icon">
+      <img src="https://app.firstaidonly.com/skin/frontend/fao_app/default/images/icon_safety.png" alt="Requisitions">
+  </i>
+  <div class="activity-content">
+  <span class="activity_counter"><?= count($companyCodes) ?></span>
+  <div class="activity-info">
+    <span class="activity_heading">Company Codes</span>
+    <span class="activity_details"><label for="users" class="label"><span><?php /* @escapeNotVerified */ echo __('Total') ?></span></label></span>
+  </div>
+
+
+</div>
+</div>
+  </div>
+
+  <div class="activity_box box-green">
+    <div class="innerbx">
+    <i class="activity-icon">
+        <img src="https://app.firstaidonly.com/skin/frontend/fao_app/default/images/icon_staff.png" alt="Requisitions">
+    </i>
+    <div class="activity-content">
+    <span class="activity_counter"><?= count($customer) ?></span>
+    <div class="activity-info">
+      <span class="activity_heading">App Users</span>
+      <span class="activity_details"><label for="users" class="label"><span><?php /* @escapeNotVerified */ echo __('Total Users') ?></span></label></span>
+    </div>
+</div>
+  </div>
+  </div>
+</div>
+</fieldset>
+  
+
+ 
+ 
+<form id="export_filter_form" action="<?= /* @escapeNotVerified */ $block->getUrl('dashboard/dashboard/downloadreports') ?>" method="post">
+<div class="field frame_color required">
+                           <label class="label" for="frame_color">
+<span><?php echo __('Filter User') ?></span>
+</label>
+                           <div class="control">
+                           <select name="frame_color" id="frame_color" title="<?php echo __('Filter User') ?>" class="input-text" data-validate="{required:true}">
+                             <option value=""><?php echo __('Total App Users') ?></option>
+ <option value=""><?php echo __('Inactive Users') ?></option>
+ <option value=""><?php echo __('Active Users') ?></option> 
+                           </select>
+                           </div>
+           </div>
+	<input name="form_key" type="hidden" value="<?= /* @escapeNotVerified */ $block->getFormKey() ?>" />
+	<div id="export_filter_grid_container"><!-- --></div>
+
+	<button class="action- scalable" type="submit" ><span><?php
+		/* @escapeNotVerified */ echo __('Download Reports Pdf')
+	?></span></button>
+</form>
+<form id="export_filter_form" action="<?= /* @escapeNotVerified */ $block->getUrl('dashboard/dashboard/refundedreport') ?>" method="post">
+
+	<input name="form_key" type="hidden" value="<?= /* @escapeNotVerified */ $block->getFormKey() ?>" />
+	<div id="export_filter_grid_container"><!-- --></div>
+
+	<button class="action- scalable" type="submit" ><span><?php
+		/* @escapeNotVerified */ echo __('Download Reports Excel')
+	?></span></button>
+</form>
+
+
+<form id="export_filter_form" action="<?= /* @escapeNotVerified */ $block->getUrl('dashboard/dashboard/downloadrequisitionreports') ?>" method="post">
+             <div class="field frame_color required">
+                <label class="label" for="frame_color">
+                  <span><?php echo __('Select Duration') ?></span>
+                     </label>
+                           <div class="control">
+                           <select name="frame_color" id="frame_color" title="<?php echo __('Select Duration') ?>" class="input-text" data-validate="{required:true}">
+                             <option value="Today"><?php echo __('Today') ?></option>
+							 <option value="Last 7 days"><?php echo __('Last 7 days') ?></option>
+							 <option value="Current Month"><?php echo __('Current Month') ?></option> 
+							 <option value="YTD"><?php echo __('YTD') ?></option> 
+							 <option value="2YTD"><?php echo __('2YTD') ?></option> 
+                           </select>
+                           </div>
+                        </div>
+	  <input name="form_key" type="hidden" value="<?= /* @escapeNotVerified */ $block->getFormKey() ?>" />
+	<div id="export_filter_grid_container"><!-- --></div>
+
+	<button class="action- scalable" type="submit" ><span><?php
+		/* @escapeNotVerified */ echo __('Download Reports')
+	?></span></button>
+</form>
+ <div id="piechart" style="width: 700px; height: 400px;"></div>
+ 
+ <div id="chart_div" style="width: 700px; height: 350px;"></div>
+
+</div>
+
+ <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+
+        var data = google.visualization.arrayToDataTable([
+          ['Task', 'Hours per Day'],
+          
+          ['Enterprise',      <?= count($customer) ?>],
+         
+          ['Standard', <?= count($customer) ?>]
+         
+        ]);
+
+        var options = {
+          title: 'Total Users'
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+
+        chart.draw(data, options);
+      }
+    </script>
+  
+<script type="text/javascript">
+google.charts.load('current', {packages: ['corechart', 'bar']});
+google.charts.setOnLoadCallback(drawBasic);
+
+function drawBasic() {
+
+      var data = new google.visualization.DataTable();
+      data.addColumn('timeofday', 'Time of Day');
+      data.addColumn('number', 'Motivation Level');
+
+      data.addRows([
+        [{v: [8, 0, 0], f: '8 am'}, 1],
+        [{v: [9, 0, 0], f: '9 am'}, 2],
+        [{v: [10, 0, 0], f:'10 am'}, 3],
+        [{v: [11, 0, 0], f: '11 am'}, 4],
+        [{v: [12, 0, 0], f: '12 pm'}, 5],
+        [{v: [13, 0, 0], f: '1 pm'}, 6],
+        [{v: [14, 0, 0], f: '2 pm'}, 7],
+        [{v: [15, 0, 0], f: '3 pm'}, 8],
+        [{v: [16, 0, 0], f: '4 pm'}, 9],
+        [{v: [17, 0, 0], f: '5 pm'}, 10],
+      ]);
+
+      var options = {
+        title: 'Motivation Level Throughout the Day',
+        hAxis: {
+          title: 'Time of Day',
+          format: 'h:mm a',
+          viewWindow: {
+            min: [7, 30, 0],
+            max: [17, 30, 0]
+          }
+        },
+        vAxis: {
+          title: 'Rating (scale of 1-10)'
+        }
+      };
+
+      var chart = new google.visualization.ColumnChart(
+        document.getElementById('chart_div'));
+
+      chart.draw(data, options);
+    }
+</script>

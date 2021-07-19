@@ -1,0 +1,103 @@
+
+<?php
+$requisition = $block->getRequisition();
+
+$requsitionDate = $block->formatDate(
+        $requisition->getCreatedAt(), \IntlDateFormatter::MEDIUM, true, $block->getTimezoneForStore(5)
+);
+
+
+echo "<pre>";
+print_r($requisition->getData());
+?>
+<section class="admin__page-section order-view-account-information">
+    <div class="admin__page-section-title">
+        <span class="title"><?= $block->escapeHtml(__('Requisition & Account Information')) ?></span>
+    </div>
+    <div class="admin__page-section-content">
+        <div class="admin__page-section-item order-information">
+<?php /* Order Information */ ?>
+            <div class="admin__page-section-item-title">
+                <span class="title">
+            <?= $block->escapeHtml(__('Requisition# %1', $requisition->getId())) ?> 
+                </span>
+            </div>
+            <div class="admin__page-section-item-content">
+                <table class="admin__table-secondary order-information-table">
+                    <tr>
+                        <th><?= $block->escapeHtml(__('Requisition Date')) ?></th>
+                        <td><?= $block->escapeHtml($requsitionDate) ?></td>
+                    </tr>
+                    <tr>
+                        <th><?= $block->escapeHtml(__('Requisition Status')) ?></th>
+                        <td><span id="order_status"><?= $block->escapeHtml(__($requisition->getRequisitionStatusLabel())) ?></span></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <div class="admin__page-section-item order-account-information">
+<?php /* Account Information */ ?>
+            <div class="admin__page-section-item-title">
+                <span class="title"><?= $block->escapeHtml(__('Account Information')) ?></span>
+            </div>
+            <div class="admin__page-section-item-content">
+                <table class="admin__table-secondary order-account-information-table">
+                    <tr>
+                        <th><?= $block->escapeHtml(__('Customer Name')) ?></th>
+                        <td><?= $block->escapeHtml(__($requisition->getCustomerName())) ?></td>
+                    </tr>
+                    <tr>
+                        <th><?= $block->escapeHtml(__('Email')) ?></th>
+                        <td><a href="mailto:<?php echo $requisition->getEmail(); ?>"><?php echo $requisition->getEmail(); ?></a></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="admin__page-section order-addresses">
+    <div class="admin__page-section-title">
+        <span class="title"><?= $block->escapeHtml(__('Address Information')) ?></span>
+    </div>
+    <div class="admin__page-section-content">
+        <div class="admin__page-section-item order-billing-address">
+<?php /* Billing Address */ ?>
+            <div class="admin__page-section-item-title">
+                <span class="title"><?= $block->escapeHtml(__('Billing Address')) ?></span>
+            </div>
+            <address class="admin__page-section-item-content">
+<?php
+echo $requisition->getFirstname() . $requisition->getLastname(). "<br>";
+echo $requisition->getData('street1') . "<br>";
+echo $requisition->getData('street2') . "<br>";
+echo $requisition->getCity() . " " . $requisition->getRegion() . "," . $requisition->getPostcode() . "<br>";
+echo $block->escapeHtml(__('T : ' . $requisition->getTelephone()));
+?>
+
+            </address>
+        </div>
+        <div class="admin__page-section-item order-shipping-address">
+<?php /* Shipping Address */ ?>
+            <div class="admin__page-section-item-title">
+                <span class="title"><?= $block->escapeHtml(__('Shipping Address')) ?></span>
+            </div>
+            <address class="admin__page-section-item-content">
+<?php
+echo $requisition->getFirstname() . $requisition->getLastname(). "<br>";
+
+echo $requisition->getData('street1') . "<br>";
+echo $requisition->getData('street2') . "<br>";
+echo $requisition->getCity() . " " . $requisition->getRegion() . "," . $requisition->getPostcode() . "<br>";
+echo $block->escapeHtml(__('T : ' . $requisition->getTelephone()));
+
+//		echo @implode("<br>", $requisition->getShippingStreet()) . "<br>";
+//		echo $requisition->getShippingCity() . " " . $requisition->getShippingRegion() . "," . $requisition->getShippingPostcode() . "<br>";
+//		;
+//		echo $block->escapeHtml(__('T : ' . $requisition->getShippingTelephone()));
+?>
+            </address>
+        </div>
+    </div>
+</section>
