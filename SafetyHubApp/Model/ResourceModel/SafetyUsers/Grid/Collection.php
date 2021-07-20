@@ -128,7 +128,7 @@ class Collection extends \Vgroup\SafetyHubApp\Model\ResourceModel\SafetyUsers\Co
         $attributeId = 146;
 
         $this->getSelect()
-                ->columns(["fullname" => "CONCAT(main_table.firstname, ' ', main_table.lastname)",
+                ->columns([
                     'telephone' => new \Zend_Db_Expr('su.telephone'),
                     'postcode' => new \Zend_Db_Expr('su.postcode'),
                     'country_id' => new \Zend_Db_Expr('su.country_id'),
@@ -137,39 +137,27 @@ class Collection extends \Vgroup\SafetyHubApp\Model\ResourceModel\SafetyUsers\Co
                     'permission_type' => new \Zend_Db_Expr('scu.permission_type'),
                     'company' => new \Zend_Db_Expr('su.company'),
                     'user_permission' => new \Zend_Db_Expr('scu.permission_type'),
-                  //  'requisition_email_address' => new \Zend_Db_Expr('ce1.value')
+                    'requisition_email_address' => new \Zend_Db_Expr('ce1.value')
                 ])
                 ->joinLeft(
-                        array('ce1' => 'customer_entity_varchar'), 'ce1.entity_id=main_table.entity_id'
-//                     array('requisition_email_address' => 'value')
+                        array('ce1' => 'customer_entity_varchar'), 'ce1.entity_id=main_table.entity_id and ce1.attribute_id=146'
+                        , array('requisition_email_address' => 'value')
                 )
-                ->where('ce1.attribute_id=' . $attributeId)
-                ->columns(new \Zend_Db_Expr("`ce1`.`value` AS req_email"))
+//                ->where('ce1.attribute_id=' . $attributeId)
+//                ->columns(new \Zend_Db_Expr("`ce1`.`value` AS req_email"))
                 ->joinLeft($joinTable . ' as su', 'main_table.default_shipping = su.entity_id', array())
                 ->joinLeft($joinSecondTable . ' as sc', 'su.company = sc.name', array())
-                ->joinLeft($joinuserItemTable . ' as scu', 'main_table.entity_id = scu.customer_id', array());
-//                ->columns([
-//                    'name' => "CONCAT(firstname, ' ', lastname)",
-//                    'telephone' => new \Zend_Db_Expr('su.telephone')
-//                    , 'postcode' => new \Zend_Db_Expr('su.postcode')
-//                    , 'country_id' => new \Zend_Db_Expr('su.country_id')
-//                    , 'region' => new \Zend_Db_Expr('su.region')
-//                    , 'req_email' => new \Zend_Db_Expr('sc.email')
-//                    , 'permission_type' => new \Zend_Db_Expr('sc.permission_type')
-//                    , 'company' => new \Zend_Db_Expr('su.company')
-//                ])
-//                ->joinLeft(array('ce1' => 'customer_entity_varchar'), 'ce1.entity_id=main_table.entity_id', array('requisition_email_address' => 'value'))
-//                ->where('ce1.attribute_id=' . $attributeId)
-//                 ->columns(new \Zend_Db_Expr("`ce1`.`value` AS req_email"))
-//                ->joinLeft($joinTable . ' as su', 'main_table.default_shipping = su.entity_id', array())
-//                ->joinLeft($joinSecondTable . ' as sc', 'su.company = sc.name', array());
-      
-        $this->addFilterToMap('permission_type', new \Zend_Db_Expr('scu.permission_type'));      
+                ->joinLeft($joinuserItemTable . ' as scu', 'main_table.entity_id = scu.customer_id', array())
+                ->where('main_table.website_id=' . 2)
+                ->where('main_table.group_id=' . 4);
+//        echo $this->getSelect();
+//        exit;
+        $this->addFilterToMap('permission_type', new \Zend_Db_Expr('scu.permission_type'));
         $this->addFilterToMap('ce1.requisition_email_address', new \Zend_Db_Expr('ce1.value'));
         //echo $this->getSelect(); 
         parent::_renderFiltersBefore();
-    } 
- 
+    }
+
     protected function _initSelect() {
         $this->addFilterToMap('email', 'main_table.email');
         $this->addFilterToMap('entity_id', 'main_table.entity_id');
@@ -177,6 +165,7 @@ class Collection extends \Vgroup\SafetyHubApp\Model\ResourceModel\SafetyUsers\Co
         $this->addFilterToMap('lastname', 'main_table.lastname');
         $this->addFilterToMap('created_at', 'main_table.created_at');
         $this->addFilterToMap('permission_type', 'scu.permission_type');
+        $this->addFilterToMap('requisition_email_address', 'ce1.value');
         parent::_initSelect();
     }
 
